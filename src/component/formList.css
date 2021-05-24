@@ -1,0 +1,21 @@
+.div1 {
+    position: relative;
+    padding: 20px;
+
+    background: #c17d7d;
+    box-shadow: 0 0 14px 1px rgba(26, 2, 2, 0.13);
+    width: 30%;
+    margin: 8px ;
+    display: flex;
+    margin-left: 35%;
+
+}
+.butten{
+    position: absolute;
+    right: 16px;
+    font-size: 18px;
+    margin-left: 30%;
+}
+.title{
+    margin-left: 40%;
+}

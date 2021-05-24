@@ -3,6 +3,9 @@ import './App.css';
 import Login from './component/login';
 import Home from './component/home';
 import Signup from './component/signup';
+import NewForm from './component/newForm';
+import FormDetailes from './component/formDetailes';
+import Results from './component/results';
 
 import {
   BrowserRouter as Router,
@@ -25,6 +28,15 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup />
+          </Route>
+          <Route path="/newForm">
+            <NewForm />
+          </Route>
+          <Route path="/formDetailes">
+            <FormDetailes />
+          </Route>
+          <Route path="/results">
+            <Results />
           </Route>
         </Switch>
       </Router>

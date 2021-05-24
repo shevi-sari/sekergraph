@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import './login.css'
 import { useHistory } from "react-router-dom";
@@ -8,7 +8,7 @@ function Login() {
     const [hasErrror, setHasErrror] = useState(true);
 
     useEffect(() => {
-        if (email !== "" & password !== "" )
+        if (email !== "" & password !== "")
             setHasErrror(false)
         else
             setHasErrror(true)
@@ -31,11 +31,13 @@ function Login() {
         <div>
             <h1>wellcom</h1>
             <h3>we happy you return to owur sekerGraph </h3>
-            <form noValidate autoComplete="off"><div> <TextField id="standard-basic" label="enter your Email*"
-                onChange={(e) => {
-                    setEmail(e.target.value)
-                }} /></div>
-                <div><TextField id="standard-basic"  type="password" label="enter your password*"
+            <form noValidate autoComplete="off"><div>
+                <TextField id="standard-basic" label="enter your Email*"
+                    onChange={(e) => {
+                        setEmail(e.target.value)
+                    }} /></div>
+                <div>
+                <TextField id="standard-basic" type="password" label="enter your password*"
                     onChange={(e) => {
                         setPassword(e.target.value)
                     }} /></div>

@@ -20,12 +20,17 @@ function Signup() {
     const login = () => {
         history.push('/');
     }
+
     useEffect(() => {
         if (email !== "" & name !== "" & password !== "" & !flagPassword & !flagEmail)
             setHasErrror(false)
         else
             setHasErrror(true)
     }, [email, name, password]);
+
+    // useEffect(() => {
+    //     setFlagEmail(isEmail(email))
+    // }, [email]);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -35,6 +40,7 @@ function Signup() {
             },
         },
     }));
+
     const classes = useStyles();
 
     function isEmail(val) {
@@ -44,31 +50,34 @@ function Signup() {
         return false;
     }
 
+    function func1(e) {
+        setEmail(e.target.value)
+        setFlagEmail(isEmail(e.target.value))
+        console.log('email from func 1 ' + e.target.value)
+        console.log('email from func 2' + email)
+        if (!flagEmail)
+            setEmailMass("")
+
+    }
 
     return (
         <div>
             <h1>wellcom</h1>
             <h3>we happy you choose to use ower sekerGraph </h3>
-
-
             <form className={classes.root} noValidate autoComplete="off">
 
                 <div>
                     <TextField
+                        onChange={(e) => { func1(e) }}
                         error={flagEmail}
                         id="standard-error-helper-text"
                         label="enter your Email*"
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                            if (!flagEmail)
-                                setEmailMass("")
-                        }}
                         onBlur={() => {
-                            setFlagEmail(isEmail(email))
                             if (flagEmail)
                                 setEmailMass("email is not valid")
                         }}
                         helperText={emailMass}
+
                     />
                 </div>
 
@@ -79,6 +88,7 @@ function Signup() {
                         label="enter your password*"
                         onChange={(e) => {
                             setPassword(e.target.value)
+                            console.log("password", password)
                             if (password.length + 1 >= 8) {
                                 setPasswordMass("");
                                 setFlagPassword(false);
@@ -90,7 +100,7 @@ function Signup() {
                             if (password.length < 8) {
                                 setPasswordMass("must be at least 8 chars");
                                 setFlagPassword(true);
-                            }
+                            } console.log('passwordMass', passwordMass)
                         }}
                     />
                 </div>

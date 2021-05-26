@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import './login.css'
 import { useHistory } from "react-router-dom";
+import {loginApi} from '../api/loginApi.js'
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +16,7 @@ function Login() {
             setHasErrror(true)
     }, [email, password]);
 
+   
 
     const history = useHistory();
     const home = () => {
@@ -25,7 +28,10 @@ function Login() {
         history.push('/signup');
     }
 
-
+    const func = () => {
+        loginApi(email,password)
+        home()
+    }
 
     return (
         <div>
@@ -37,19 +43,14 @@ function Login() {
                         setEmail(e.target.value)
                     }} /></div>
                 <div>
-                <TextField id="standard-basic" type="password" label="enter your password*"
-                    onChange={(e) => {
-                        setPassword(e.target.value)
-                    }} /></div>
-
-
-                <Button type="submit" disabled={hasErrror} variant="contained" color="secondary" onClick={home}>ENTER</Button><br /><br />
+                    <TextField id="standard-basic" type="password" label="enter your password*"
+                        onChange={(e) => {
+                            setPassword(e.target.value)
+                        }} /></div>
+                <Button type="submit" disabled={hasErrror} variant="contained" color="secondary" onClick={func}>ENTER</Button><br /><br />
                 <Button variant="contained" color="secondary" onClick={signup}>CONNECTION</Button>
-
             </form>
-
         </div>
     )
-
 }
 export default Login;

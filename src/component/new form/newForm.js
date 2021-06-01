@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button, TextField } from '@material-ui/core';
 import FullListEmail from './fullListEmails';
-import FormToDesign from '../formToDesign';
+import FormToDesign from './formToDesign';
 function NewForm() {
   const [showEmailList, setShowEmailList] = useState(true);
   const save = () => {

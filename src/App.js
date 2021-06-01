@@ -1,11 +1,11 @@
 import React ,{useEffect} from 'react';
 import './App.css';
-import Login from './component/login';
-import Home from './component/home';
-import Signup from './component/signup';
-import NewForm from './component/newForm';
-import FormDetailes from './component/formDetailes';
-import Results from './component/results';
+import Login from './component/enter/login';
+import Home from './component/enter/home';
+import Signup from './component/enter/signup';
+import NewForm from './component/new form/newForm';
+import FormDetailes from './component/old form/formDetailes';
+import Results from './component/enter/results';
 
 import {
   BrowserRouter as Router,

@@ -1,7 +1,12 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import { useHistory } from "react-router-dom";
 import { Button, TextField } from '@material-ui/core';
+import DateAndTimePickers from './sendIn'
+import EmailList from './emailList'
+
 function FormDetailes() {
+    const [showTiming, setShowTiming] = useState(true);
+    const [showEmailList, setShowEmailList] = useState(true);
     const history = useHistory();
     const newForm = () => {
 
@@ -12,20 +17,20 @@ function FormDetailes() {
         history.push('/results')
     }
 
-    const sendBy=()=>{
+    const sendBy = () => {
 
+        setShowTiming(false)
     }
-    const showEmails=()=>{
-
+    const showEmails = () => {
+        setShowEmailList(false)
     }
     return <div>
         <Button variant="contained" color="secondary" onClick={newForm}>re-edit</Button>
         <Button variant="contained" color="secondary" onClick={sendBy}>send</Button>
         <Button variant="contained" color="secondary" onClick={showEmails}>emailes</Button>
         <Button variant="contained" color="secondary" onClick={results}>view results</Button>
-        <button >send new</button>
-        <button>choose when to send </button>
-        <div>email list</div>
+      <div style={{display:showTiming ?'none' : 'block' }}> <DateAndTimePickers/></div> 
+      <div style={{display:showEmailList ?'none' : 'block' }}> <EmailList/></div>                                                      
     </div>
 }
-export default FormDetailes
+export default FormDetailes;

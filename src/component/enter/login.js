@@ -15,9 +15,7 @@ function Login() {
         else
             setHasErrror(true)
     }, [email, password]);
-
    
-
     const history = useHistory();
     const home = () => {
 

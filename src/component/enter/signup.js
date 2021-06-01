@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import { signupApi } from '../api/signupApi'
 
 function Signup() {
 
@@ -17,7 +18,14 @@ function Signup() {
     const [hasErrror, setHasErrror] = useState(true);
 
     const history = useHistory();
+    
+    let user = {
+        email:email,
+        password: password,
+       name:name
+        };
     const login = () => {
+        signupApi(user)
         history.push('/');
     }
 

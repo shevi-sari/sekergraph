@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './formList.css'
 
 function FormList(props) {
@@ -12,11 +12,17 @@ function FormList(props) {
     console.log(props)
     const getList = () => {
         return props.list.map((f) => {
-            return <div className="div1" onClick={formDetailes} >
-                <labal >survey num:{f.formNum}</labal>
-                <label>send in :{f.date}</label>
+            return (
+                <div  >
+                    <svg class="Rectangle_195">
+                        <rect onClick={formDetailes} id="Rectangle_195" rx="0" ry="0" x="0" y="0" width="398" height="97">
+                        </rect>
+                    </svg>
+                    <labal id="_2" >survey num:{f.formNum}</labal>
+                    <label id="_2">send in :{f.date}</label>
 
-            </div>
+                </div>
+            )
         })
     }
     return <div>{getList()}</div>

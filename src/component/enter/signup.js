@@ -137,11 +137,11 @@ function Signup() {
 
             <form className={classes.root} noValidate autoComplete="off">
 
-                <div>
-                    <TextField
+                <div class="Line_1" viewBox="0 0 460.192 1">
+                    <TextField id="Line_1" d="M 460.1918029785156 0 L 0 0"
                         onChange={(e) => { func1(e) }}
                         error={flagEmail}
-                        id="standard-error-helper-text"
+                        // id="standard-error-helper-text"
                         label="enter your Email*"
                         onBlur={() => {
                             if (flagEmail)

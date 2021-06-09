@@ -33,14 +33,14 @@ function Login() {
 
     return (
         <div id="Web_1920__2">
-            <svg class="Rectangle_191_ba">
-                <linearGradient id="Rectangle_191_ba" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+            {/* <svg class="Rectangle_191_ba">
+                <linearGradient id="Rectangle_191_ba"  x1="0.5" x2="0.5" y1="0" y2="1">
                     <stop offset="0" stop-color="#434343" stop-opacity="1"></stop>
                     <stop offset="1" stop-color="#171a19" stop-opacity="1"></stop>
                 </linearGradient>
-                <rect id="Rectangle_191_ba" rx="0" ry="0" x="0" y="0" width="1920" height="1078">
+                <rect id="Rectangle_191_ba" width="100%" height="100%">
                 </rect>
-            </svg>
+            </svg> */}
 
             <div id="Group_176">
                 <svg class="Path_374_bc" viewBox="471.676 156.562 12.673 47.78">
@@ -63,33 +63,38 @@ function Login() {
                     <span>sekergraph</span>
                 </div>
             </div>
-           
+
             <form noValidate autoComplete="off"><div>
-                <div id="__bh">
-                    <span>שם משתמש</span>
-                </div>
 
+                <div class="Line_35">
+                    <div id="__bh">
+                        <span>שם משתמש</span>
+                    </div>
+                    <input id="Line_35" ></input></div>
 
-                <svg class="Line_35" viewBox="0 0 460.192 1">
+                <svg viewBox="0 0 460.192 1">
                     <path id="Line_35" d="M 460.1918029785156 0 L 0 0">
+
                     </path>
+
                 </svg>
 
                 <div id="_bl">
                     <span>הכנס</span> </div>
-                {/*
+
                 <TextField id="standard-basic" label="enter your Email*"
                     onChange={(e) => {
                         setEmail(e.target.value)
-                    }} /> */}
+                    }} />
 
             </div>
                 <div>
                     <div id="_bi">
                         <span>סיסמא</span>
                     </div>
-                    <svg class="Line_36" viewBox="0 0 460.192 1">
-                        <path id="Line_36" d="M 460.1918029785156 0 L 0 0">
+                    <svg type="input" class="Line_36" viewBox="0 0 460.192 1">
+
+                        <path type="input" id="Line_36" d="M 460.1918029785156 0 L 0 0">
                         </path>
                     </svg>
                     {/* <TextField id="standard-basic" type="password"
@@ -98,19 +103,19 @@ function Login() {
                             setPassword(e.target.value)
                         }} /> */}
                 </div>
-                <svg class="Rectangle_192">
+                {/* <svg class="Rectangle_192">
                     <rect type="submit" disabled={hasErrror} variant="contained" onClick={func} id="Rectangle_192" rx="24.5" ry="24.5" x="0" y="0" width="289" height="49">
                     </rect>
-                </svg>
-                <svg class="Rectangle_193">
+                </svg> */}
+                {/* <svg class="Rectangle_193">
                     <rect variant="contained" color="secondary" onClick={signup} id="Rectangle_193" rx="24.5" ry="24.5" x="0" y="0" width="289" height="49">
                     </rect>
-                </svg>
-
-
-                <div id="_bo" onClick={signup}>
+                </svg> */}
+<div className="Rectangle_192 ">
+<button   id="Rectangle_192 " onClick={signup}>התחבר</button></div>
+                {/* <div id="_bo" onClick={signup}>
                     <span >התחבר</span>
-                </div>
+                </div> */}
                 <div id="_bp" onClick={func}>
                     <span>הכנס</span>
                 </div>

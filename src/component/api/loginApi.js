@@ -1,7 +1,7 @@
-export const loginApi = (email,password) => {
-    fetch(`http://localhost:3000/login?user=${email}?password=${password}`)
+export const loginApi = (email, password) => {
+    fetch(`http://localhost:3000/login/${email}/${password}`)
         .then(response => {
-            if (response.status == 204)
+            if (response.status == 401)
                 alert("שם משתמש או סיסמא אינם תקינים");
             else if (response.ok) {
                 response.json()

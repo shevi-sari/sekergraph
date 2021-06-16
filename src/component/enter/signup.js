@@ -16,23 +16,22 @@ function Signup() {
     const [emailMass, setEmailMass] = useState('');
     const [passwordMass, setPasswordMass] = useState('');
     const [nameMass, setNameMass] = useState('');
-    const [hasErrror, setHasErrror] = useState(true);
+    const [hasError, setHasError] = useState(true);
 
     const history = useHistory();
 
-    const login = () => {
-        signupApi({ email, password, name }).then(() => {
+    const signup = () => {
+        signupApi ({ email, password, name }).then(() => {
             history.push('/');
-        }).catch(() => {
-
-        })
-    }
+        }).catch   ( (error)=>console.log("error##########", error))
+        }
+    
 
     useEffect(() => {
         if (email !== "" && name !== "" && password !== "" && !flagPassword & !flagEmail)
-            setHasErrror(false)
+            setHasError(false)
         else
-            setHasErrror(true)
+            setHasError(true)
     }, [email, name, password]);
 
     const useStyles = makeStyles((theme) => ({
@@ -52,8 +51,8 @@ function Signup() {
     }
 
     return (
-        <div className="body" >
-            <div id="Group_176">
+        <div>
+             <div id="Group_176">
                 <svg className="Path_374_bc" viewBox="471.676 156.562 12.673 47.78">
                     <path id="Path_374_bc" d="M 471.6759948730469 204.3419952392578 C 475.0339965820313 202.7819976806641 476.6709899902344 201.3099975585938 479.0289916992188 199.5200042724609 C 480.8949890136719 198.1020050048828 482.6700134277344 196.3040008544922 484.3489990234375 194.7200012207031 C 484.3489990234375 183.677001953125 484.322998046875 167.6060028076172 484.322998046875 156.5619964599609 L 471.6759948730469 163.22900390625 L 471.6759948730469 204.3419952392578 Z">
                     </path>
@@ -81,7 +80,7 @@ function Signup() {
 
             <form id="form" className={classes.root} noValidate autoComplete="off">
 
-                <div class="Line_1" viewBox="0 0 460.192 1">
+                <div  viewBox="0 0 460.192 1">
                     <TextField id="Line_1" d="M 460.1918029785156 0 L 0 0"
                         onChange={(e) => {
                             setEmail(e.target.value);
@@ -142,12 +141,12 @@ function Signup() {
                                 setFlagName(true)
                             }
                         }}
-                        style={{color:'white'}}
+                        style={{ color: 'white' }}
                     />
                 </div>
 
 
-                <Button disabled={hasErrror} className="button" variant="contained" onClick={login} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >connect</Button>
+                <Button disabled={hasError} className="button" variant="contained" onClick={signup} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >connect</Button>
             </form>
         </div>
     )

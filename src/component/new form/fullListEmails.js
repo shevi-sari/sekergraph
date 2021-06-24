@@ -12,6 +12,7 @@ function FullListEmail() {
     const classes = useStyles();
     const [emails, SetEmails] = useState(['s@s', 'v@v', 'j@j', 'g@g', 'fg@fg', 't@w', 'l@lll'])
 
+
     const removeEmailFromList = (e) => {
         let num = (emails.indexOf(e))
         let l = emails.splice(num, 0);
@@ -22,7 +23,7 @@ function FullListEmail() {
         return emails.map((email) => <div>
             <Grid container className={classes.root} >
                 <Grid item xs={8}>{email} <DeleteIcon
-                //  onClick={ select={removeEmailFromList}}
+                 //onClick={ select={removeEmailFromList}}
                 />
                 </Grid>
             </Grid>

@@ -1,8 +1,8 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
-import { getEmailByForm, addEmail} from '../api/formApi'
+import { getEmailByForm, addEmail, removeEmail } from '../api/formApi'
 import { Button } from '@material-ui/core';
 function EmailList() {
 
@@ -11,61 +11,54 @@ function EmailList() {
             color: theme.palette.text.primary,
         },
     }));
-    const [emails,SetEmails] =useState ([])
-    const [emailToRemove,SetEmailToRemove] =useState ('');
-    const [showInput,setShowInput] =useState ('');
+    const [emails, SetEmails] = useState([])
+    const [emailToRemove, SetEmailToRemove] = useState('');
+    const [showInput, setShowInput] = useState(false);
 
 
-    useEffect(async() => {
-        const f=await getEmailByForm()
+    useEffect(async () => {
+        const f = await getEmailByForm()
         SetEmails(f)
-        
-    },[showInput]);
-
-   
-    // useEffect(async() => {
-    //     let num = (emails.indexOf(emailToRemove))
-    //     let l = emails.splice(num, 0);
-    //     SetEmails (l)
-        
-    // },[emailToRemove]);
-    const removeEmailFromList = (e) => {
-        
-       let num = (emails.indexOf(e))
-        let l = emails.splice(num, 0);
-        SetEmails (l) 
-    }
-
-    const add=()=>{
-        setShowInput(true)
-    }
-    const blur=(e)=>{
-        addEmail(e);
-        setShowInput(false);
         printList();
-        
+    }, []);
+
+
+    useEffect(() => {
+        removeEmail(emailToRemove).then(res => {
+            SetEmails(res);
+        }
+        );
+
+    }, [emailToRemove]);
+
+
+    const add = () => {
+        setShowInput(!showInput);
+    }
+    const blur = (e) => {
+        addEmail(e).then(res => {
+            SetEmails(res);
+            setShowInput(!showInput);
+        });
     }
     const classes = useStyles();
 
-
     const printList = () => {
-        return emails?.map((email) => <div>
-            <Grid container className={classes.root} >
+        return emails?.map((email) =>
+            <div> <Grid container className={classes.root} >
                 <Grid item xs={8}>{email} <DeleteIcon
-                  onClick={removeEmailFromList}
-                  />
+                    onClick={() => SetEmailToRemove(email)}
+                />
                 </Grid>
             </Grid>
-
-        </div>)
+            </div>)
     }
-
-
 
     return <div >
         {printList()}
         <button onClick={add}>+</button>
-       {showInput && <input onBlur={(e)=>blur(e.target.value)}/>}
+        {showInput && <input onBlur={(e) => blur(e.target.value)} />}
+
     </div>
 }
 export default EmailList;

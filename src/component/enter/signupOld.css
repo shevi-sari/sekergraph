@@ -1,0 +1,317 @@
+.aa{
+	background-color: #2d2e2e;
+}
+	.mediaViewInfo {
+		--web-view-name: Web 1920 – 1;
+		--web-view-id: Web_1920__1;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: Web_1920__1;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#Web_1920__1 {
+		position: absolute;
+		width: 1920px;
+		height: 1080px;
+		background-color: rgba(255,255,255,1);
+		overflow: hidden;
+		--web-view-name: Web 1920 – 1;
+		--web-view-id: Web_1920__1;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	@keyframes fadein {
+	
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	
+	}
+	#Rectangle_1_p {
+		fill: url(#Rectangle_1_p);
+		stroke: rgb(94, 89, 89);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 10;
+		shape-rendering: auto;
+	}
+	.Rectangle_1_p {
+		position: absolute;
+		overflow: visible;
+		width: 1921px;
+		height: 1079px;
+		left: 0.5px;
+		top: 2.5px;
+	}
+	#Group_1 {
+		position: absolute;
+		width: 199.826px;
+		height: 170.55px;
+		left: 74px;
+		top: 61px;
+		overflow: visible;
+	}
+	#Path_374 {
+		fill: rgba(255,255,255,1);
+	}
+	.Path_374 {
+		overflow: visible;
+		position: absolute;
+		width: 12.673px;
+		height: 47.78px;
+		left: 109.067px;
+		top: 30.486px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Path_375 {
+		fill: rgba(255,255,255,1);
+	}
+	.Path_375 {
+		overflow: visible;
+		position: absolute;
+		width: 12.672px;
+		height: 42.556px;
+		left: 91.1px;
+		top: 39.848px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Path_376 {
+		fill: rgba(255,255,255,1);
+	}
+	.Path_376 {
+		overflow: visible;
+		position: absolute;
+		width: 12.672px;
+		height: 32.839px;
+		left: 73.321px;
+		top: 49.352px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Path_377 {
+		fill: rgba(224,108,121,1);
+	}
+	.Path_377 {
+		overflow: visible;
+		position: absolute;
+		width: 86.235px;
+		height: 88.228px;
+		left: 51.74px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#sekergraph {
+		left: 0px;
+		top: 87.506px;
+		position: absolute;
+		overflow: visible;
+		width: 200.826px;
+		height: 83.0434799194336px;
+		line-height: 43.20000076293945px;
+		margin-top: -3.6000003814697266px;
+		text-align: left;
+		font-family: cursive;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 36px;
+		color: rgba(255,255,255,1);
+	}
+	#con {
+		left: 903px;
+		top: 306px;
+		position: absolute;
+		overflow: visible;
+		width: 101px;
+		white-space: nowrap;
+		line-height: 40px;
+		margin-top: -1.5px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 37px;
+		color: rgba(255,255,255,1);
+	}
+	#_ {
+		left: 1076px;
+		top: 459px;
+		position: absolute;
+		overflow: visible;
+		width: 111px;
+		white-space: nowrap;
+		line-height: 27px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: lighter;
+		font-size: 25px;
+		color: rgba(187,187,187,1);
+	}
+	#__y {
+		left: 1085px;
+		top: 570px;
+		position: absolute;
+		overflow: visible;
+		width: 103px;
+		white-space: nowrap;
+		line-height: 27px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: lighter;
+		font-size: 25px;
+		color: rgba(187,187,187,1);
+	}
+	#_z {
+		left: 1140px;
+		top: 681px;
+		position: absolute;
+		overflow: visible;
+		width: 51px;
+		white-space: nowrap;
+		line-height: 27px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: lighter;
+		font-size: 25px;
+		color: rgba(187,187,187,1);
+	}
+	#_ba {
+		left: 1128px;
+		top: 792px;
+		position: absolute;
+		overflow: visible;
+		width: 63px;
+		white-space: nowrap;
+		line-height: 27px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: lighter;
+		font-size: 25px;
+		color: rgba(187,187,187,1);
+	}
+	#Line_1 {
+		fill: transparent;
+		stroke: rgba(255,255,255,0.31);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_1 {
+		overflow: visible;
+		position: absolute;
+		width: 460.192px;
+		height: 1px;
+		left: 731.5px;
+		top: 497.891px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Line_2 {
+		fill: transparent;
+		stroke: rgba(255,255,255,0.31);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_2 {
+		overflow: visible;
+		position: absolute;
+		width: 460.192px;
+		height: 1px;
+		left: 731.5px;
+		top: 609.032px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Line_3 {
+		fill: transparent;
+		stroke: rgba(255,255,255,0.31);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_3 {
+		overflow: visible;
+		position: absolute;
+		width: 460.192px;
+		height: 1px;
+		left: 731.5px;
+		top: 720.173px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Line_4 {
+		fill: transparent;
+		stroke: rgba(255,255,255,0.31);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_4 {
+		overflow: visible;
+		position: absolute;
+		width: 460.192px;
+		height: 1px;
+		left: 731.5px;
+		top: 831.313px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_2 {
+		fill: rgba(228,107,124,1);
+		stroke: rgba(112,112,112,0);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_2 {
+		position: absolute;
+		overflow: visible;
+		width: 289px;
+		height: 49px;
+		left: 817px;
+		top: 936px;
+		--web-animation: fadein 0.3s ease-out;
+		--web-action-type: page;
+		--web-action-target: Web_1920___3.html;
+		cursor: pointer;
+	}
+	#_bb {
+		left: 916px;
+		top: 943px;
+		position: absolute;
+		overflow: visible;
+		width: 89px;
+		white-space: nowrap;
+		line-height: 27px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 25px;
+		color: rgba(255,255,255,1);
+	}

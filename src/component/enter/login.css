@@ -1,0 +1,107 @@
+
+	body{
+        background:#2a2c2b;;
+    }
+    .button{
+    position :absolute;
+    color: rgb(167, 4, 31) important! ;
+    align-items: center;
+    }
+    #form{
+        position: relative;
+        top: 25rem;
+        /* display: flex; */
+        align-items: center;
+        width: 100%;
+        left:50rem;
+        justify-self: center;
+        /* width: 200px;
+        height: 100px; */
+    }
+    #Group_176 {
+		position: absolute;
+		width: 199.826px;
+		height: 170.55px;
+		left: 73px;
+		top: 59px;
+		overflow: visible;
+    }
+    #Path_374_bc {
+		fill: rgba(255,255,255,1);
+	}
+	.Path_374_bc {
+		overflow: visible;
+		position: absolute;
+		width: 12.673px;
+		height: 47.78px;
+		left: 109.067px;
+		top: 30.486px;
+		transform: matrix(1,0,0,1,0,0);
+	}	#Path_375_bd {
+		fill: rgba(255,255,255,1);
+	}
+	.Path_375_bd {
+		overflow: visible;
+		position: absolute;
+		width: 12.672px;
+		height: 42.556px;
+		left: 91.1px;
+		top: 39.848px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Path_376_be {
+		fill: rgba(255,255,255,1);
+	}
+	.Path_376_be {
+		overflow: visible;
+		position: absolute;
+		width: 12.672px;
+		height: 32.839px;
+		left: 73.321px;
+		top: 49.352px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Path_377_bf {
+		fill: rgba(224,108,121,1);
+	}
+	.Path_377_bf {
+		overflow: visible;
+		position: absolute;
+		width: 86.235px;
+		height: 88.228px;
+		left: 51.74px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#sekergraph_bg {
+		left: 0px;
+		top: 87.506px;
+		position: absolute;
+		overflow: visible;
+		width: 200.826px;
+		height: 83.0434799194336px;
+		line-height: 43.20000076293945px;
+		margin-top: -3.6000003814697266px;
+		text-align: left;
+		font-family: LevenimMT;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 36px;
+		color: rgba(255,255,255,1);
+	}
+	#__bh {
+		left: 1075px;
+		top: 502px;
+		position: absolute;
+		overflow: visible;
+		width: 111px;
+		white-space: nowrap;
+		line-height: 27px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Assistant;
+		font-style: normal;
+		font-weight: lighter;
+		font-size: 25px;
+		color: rgba(187,187,187,1);
+	}

@@ -23,7 +23,7 @@ const [list,setList]=useState([]);
     return (<div  >
 	
     <FormList list={list}/>
-        
+        <div></div>
 	<Button  className="button" variant="contained" onClick={newForm} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >new form</Button>
     </div>
     )}

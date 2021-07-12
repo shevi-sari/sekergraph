@@ -3,7 +3,7 @@ import { Button, TextField } from '@material-ui/core';
 import './login.css'
 import { useHistory } from "react-router-dom";
 import { loginApi } from '../api/loginApi.js'
-
+import { makeStyles } from '@material-ui/core/styles';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,23 +25,64 @@ function Login() {
 
     const login = () => {
         loginApi(email, password)
-            // .then(() => {
-                history.push('/home');
-            // }).catch((error) => console.log("error##########", error))
+        // .then(() => {
+        history.push('/home');
+        // }).catch((error) => console.log("error##########", error))
     }
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            '& label.Mui-focused': {
+                color: 'white',
+            }, '& label.Mui-focused': {
+                color: 'white',
+            },
+            '& .MuiInput-underline:after': {
+                borderBottomColor: 'white',
+            },
+            '& .MuiInput-underline:before': {
+                borderBottomColor: 'white',
+            },
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: 'white',
+                },
+                '&:hover fieldset': {
+                    borderColor: 'white',
+                },
+                '&.Mui-focused fieldset': {
+                    borderColor: 'white',
+                },
+            
+                
+            }
+        }
+    }));
+    const classes = useStyles();
     return (
+
         <div  >
-          
+
             <form id="form" noValidate autoComplete="off"><div>
-
-
-
                 <TextField id="standard-basic"
+                    className={classes.root}
                     label="enter your Email*"
                     onChange={(e) => {
                         setEmail(e.target.value)
                     }} />
-                <TextField id="standard-basic" type="password"
+                <TextField id="standard-basic"
+                    className={classes.root}
+                    type="password"
+                    InputProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
+                    InputLabelProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
+
                     label="enter your password*"
                     onChange={(e) => {
                         setPassword(e.target.value)
@@ -57,4 +98,3 @@ function Login() {
     )
 }
 export default Login;
-/////////

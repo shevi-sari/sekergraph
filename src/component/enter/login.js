@@ -3,11 +3,8 @@ import { Button, TextField } from '@material-ui/core';
 import './login.css'
 import { useHistory } from "react-router-dom";
 import { loginApi } from '../api/loginApi.js'
-<<<<<<< HEAD
 
-=======
-import { makeStyles } from '@material-ui/core/styles';
->>>>>>> 68c4376fae57c40203d1bc81bc38127ce3340b1b
+import {textFeild} from '../../style'
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,68 +26,33 @@ function Login() {
 
     const login = () => {
         loginApi(email, password)
-<<<<<<< HEAD
-            // .then(() => {
-                history.push('/home');
-            // }).catch((error) => console.log("error##########", error))
-    }
-    return (
-        <div  >
-          
-            <form id="form" noValidate autoComplete="off"><div>
-
-
-
-                <TextField id="standard-basic"
-=======
-        // .then(() => {
+        .then(() => {
         history.push('/home');
-        // }).catch((error) => console.log("error##########", error))
+        }).catch((error) => console.log("error##########", error))
     }
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            '& label.Mui-focused': {
-                color: 'white',
-            }, '& label.Mui-focused': {
-                color: 'white',
-            },
-            '& .MuiInput-underline:after': {
-                borderBottomColor: 'white',
-            },
-            '& .MuiInput-underline:before': {
-                borderBottomColor: 'white',
-            },
-            '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                    borderColor: 'white',
-                },
-                '&:hover fieldset': {
-                    borderColor: 'white',
-                },
-                '&.Mui-focused fieldset': {
-                    borderColor: 'white',
-                },
-            
-                
-            }
-        }
-    }));
-    const classes = useStyles();
+
+    const classes = textFeild();
     return (
 
         <div  >
 
             <form id="form" noValidate autoComplete="off"><div>
                 <TextField id="standard-basic"
+                    InputProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
+                    InputLabelProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
                     className={classes.root}
->>>>>>> 68c4376fae57c40203d1bc81bc38127ce3340b1b
                     label="enter your Email*"
                     onChange={(e) => {
                         setEmail(e.target.value)
-                    }} />
-<<<<<<< HEAD
-                <TextField id="standard-basic" type="password"
-=======
+                    }} /><br />
                 <TextField id="standard-basic"
                     className={classes.root}
                     type="password"
@@ -105,23 +67,18 @@ function Login() {
                         }
                     }}
 
->>>>>>> 68c4376fae57c40203d1bc81bc38127ce3340b1b
                     label="enter your password*"
                     onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
 
 
-                <Button className="button" variant="contained" onClick={signup} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >signup</Button>
-                <Button disabled={hasError} className="button" variant="contained" onClick={login} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >enter</Button>
+                <br /><Button className="button" variant="contained" onClick={signup} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >signup</Button>
+                <br /><Button disabled={hasError} className="button" variant="contained" onClick={login} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >enter</Button>
             </div>
 
             </form>
         </div>
     )
 }
-<<<<<<< HEAD
 export default Login;
-=======
-export default Login;
->>>>>>> 68c4376fae57c40203d1bc81bc38127ce3340b1b

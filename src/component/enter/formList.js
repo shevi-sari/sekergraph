@@ -9,25 +9,25 @@ function FormList(props) {
     }
     debugger
     console.log(props)
-//     const getList = () => {
-//         return props.list.map((f) => {
-//             return (
-//                 <div onClick={formDetailes(f)} >
-//                     <labal >survey num:{f.name}</labal>
-//                     <label >send in :{f.date}</label>
-//                 </div>
-//             )
-//         })
-//     }
-//     return <div>{getList()}</div>
-// }
-return props.list.map((f) => {
-                return (
-                    <div onClick={formDetailes(f)} >
-                        <labal >survey num:{f.name}</labal>
-                        <label >send in :{f.date}</label>
-                    </div>
-                )
-            })
-        }  
+    //     const getList = () => {
+    //         return props.list.map((f) => {
+    //             return (
+    //                 <div onClick={formDetailes(f)} >
+    //                     <labal >survey num:{f.name}</labal>
+    //                     <label >send in :{f.date}</label>
+    //                 </div>
+    //             )
+    //         })
+    //     }
+    //     return <div>{getList()}</div>
+    // }
+    return props.list.map((f) => {
+        return (
+            <div onClick={() => formDetailes(f)} >
+                <labal >survey num:{f.name}</labal>
+                <label >send in :{f.date}</label>
+            </div>
+        )
+    })
+}
 export default FormList;

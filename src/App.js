@@ -8,12 +8,15 @@ import FormDetailes from './component/old form/formDetailes';
 import Results from './component/enter/results';
 import './component/enter/login.css'
 
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
+
 
 
 function App() {

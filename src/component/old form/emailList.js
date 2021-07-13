@@ -3,7 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import { getEmailByForm, addEmail, removeEmail } from '../api/formApi'
-import { Button } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+
 function EmailList() {
 
     const useStyles = makeStyles((theme) => ({
@@ -46,17 +48,27 @@ function EmailList() {
     const printList = () => {
         return emails?.map((email) =>
             <div> <Grid container className={classes.root} >
-                <Grid item xs={8}>{email} <DeleteIcon
-                    onClick={() => SetEmailToRemove(email)}
-                />
+                <Grid item xs={8}>{email} <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
+                            <DeleteIcon
+                                onClick={() => {
+                                    SetEmailToRemove(email)
+                                        
+                                }}
+                            />
+                        </Fab>
                 </Grid>
             </Grid>
+
+            
             </div>)
     }
 
     return <div >
         {printList()}
-        <button onClick={add}>+</button>
+        
+        <Fab size="small" color="secondary" aria-label="add" className={classes.margin} onClick={add}>
+          <AddIcon />
+        </Fab>
         {showInput && <input onBlur={(e) => blur(e.target.value)} />}
 
     </div>

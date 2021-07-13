@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
+import { textFeild } from '../../style';
 import { signupApi } from '../api/signupApi'
 import './signup.css'
+
 
 function Signup() {
 
@@ -34,28 +35,33 @@ function Signup() {
             setHasError(true)
     }, [email, name, password]);
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                width: 200,
-            },
-        },
-    }));
+   
 
-    const classes = useStyles();
+
 
     function isNotEmail() {
         let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return (!regEmail.test(email))
     }
-
+  
+    const classes = textFeild();
     return (
         <div>
              <form id="form" className={classes.root} noValidate autoComplete="off">
 
                 <div  viewBox="0 0 460.192 1">
                     <TextField id="Line_1" d="M 460.1918029785156 0 L 0 0"
+                     className={classes.root}
+                    InputProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
+                    InputLabelProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
                         onChange={(e) => {
                             setEmail(e.target.value);
                             setFlagEmail(false);
@@ -76,6 +82,17 @@ function Signup() {
                 </div>
                 <div>
                     <TextField
+                     className={classes.root}
+                    InputProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
+                    InputLabelProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
                         error={flagPassword}
                         id="standard-error-helper-text"
                         label="enter your password*"
@@ -98,6 +115,17 @@ function Signup() {
 
                 <div>
                     <TextField
+                     className={classes.root}
+                    InputProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
+                    InputLabelProps={{
+                        style: {
+                            color: "white",
+                        }
+                    }}
                         error={flagName}
                         id="standard-error-helper-text"
                         label="enter your name*"

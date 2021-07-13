@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import { getEmailByManeger, removeEmail } from '../api/formApi'
+import { TextField } from '@material-ui/core';
+import { textFeild } from '../../style';
 function FullListEmail() {
 
     const useStyles = makeStyles((theme) => ({
@@ -25,7 +27,7 @@ function FullListEmail() {
         let num = (emails.indexOf(emailToRemove))
         emails.splice(num, 1);
     }, [emailToRemove]);
-
+  
     // const removeEmailFromList = (e) => {
     //     let num = (emails.indexOf(e))
     //     let l = emails.splice(num, 0);
@@ -47,6 +49,23 @@ function FullListEmail() {
                 />
                 </Grid>
             </Grid>
+            <TextField id="standard-basic"
+                InputProps={{
+                    style: {
+                        color: "white",
+                    }
+                }}
+                InputLabelProps={{
+                    style: {
+                        color: "white",
+                    }
+                }}
+                className={classes.root}
+                label="enter a answer"
+               
+                onBlur={(e) => blur(e.target.value)}
+            />
+            <button onClick={add}>הוסף תשובה</button>
         </div>)
     }
 

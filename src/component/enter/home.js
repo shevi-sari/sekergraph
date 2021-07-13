@@ -23,11 +23,8 @@ const [list,setList]=useState([]);
     return (<div  >
 	
     <FormList list={list}/>
-<<<<<<< HEAD
         
-=======
         <div>נראה אם את רואה את זה</div>
->>>>>>> 68c4376fae57c40203d1bc81bc38127ce3340b1b
 	<Button  className="button" variant="contained" onClick={newForm} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >new form</Button>
     </div>
     )}

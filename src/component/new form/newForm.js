@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField, Fab, Select, MenuItem, InputLabel, makeStyles, FormControl } from '@material-ui/core';
 //import FullListEmail from './fullListEmails';
 import FormToDesign from './formToDesign';
-import { textFeild } from '../../style'
+import { textFeild, button } from '../../style'
 import CheckboxLabels from './question/multiSelect';
 import AddIcon from '@material-ui/icons/Add';
 import Region from './question/Region'
@@ -27,6 +27,7 @@ function NewForm() {
     setShowEmailList(false)
   }
   const textFeild1 = textFeild();
+  const button1=button();
   const useStyles = makeStyles((theme) => ({
     button: {
       display: 'block',
@@ -57,8 +58,8 @@ function NewForm() {
 
   return (<div>
     <div>
-      <Button variant="contained" color="secondary" onClick={save}>save</Button><br /><br />
-      <Button variant="contained" color="secondary" onClick={emailList}>email to send</Button><br />
+      <Button className={button1.root} variant="contained" color="secondary" onClick={save} >save</Button><br /><br />
+      <Button className={button1.root}variant="contained" color="secondary" onClick={emailList} >email to send</Button><br />
       <div>
 
         <FormControl className={classes.formControl}>
@@ -111,7 +112,8 @@ function NewForm() {
         size="medium"
         color="secondary"
         aria-label="add"
-        className={classes.margin}
+        // className={classes.margin}
+        className={button1.root}
       >
         <AddIcon className={classes.extendedIcon} />
            add question

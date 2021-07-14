@@ -6,7 +6,7 @@ import Signup from './component/enter/signup';
 import NewForm from './component/new form/newForm';
 import FormDetailes from './component/old form/formDetailes';
 import Results from './component/enter/results';
-import './component/enter/login.css'
+import './logo.css'
 
 
 import {

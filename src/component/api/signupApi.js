@@ -15,7 +15,8 @@ export const signupApi = (user) => {
                     })
             } else {
                 response.json()
-                    .then(() => error1 => { alert(JSON.stringify(error1.errors)) }).catch(error => { console.log(error); });
+                    .then(() => error1 => { alert(JSON.stringify(error1.errors)) })
+                    .catch(error => { console.log(error); });
             }
         })
 }

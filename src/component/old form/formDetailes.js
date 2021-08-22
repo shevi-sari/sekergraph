@@ -22,7 +22,7 @@ function FormDetailes() {
         setShowTiming(false)
     }
     const showEmails = () => {
-        setShowEmailList(false)
+        setShowEmailList(!showEmailList)
     }
     return <div>
         <Button variant="contained" color="secondary" onClick={newForm}>re-edit</Button>
@@ -30,7 +30,8 @@ function FormDetailes() {
         <Button variant="contained" color="secondary" onClick={showEmails}>emailes</Button>
         <Button variant="contained" color="secondary" onClick={results}>view results</Button>
       <div style={{display:showTiming ?'none' : 'block' }}> <DateAndTimePickers/></div> 
-      <div style={{display:showEmailList ?'none' : 'block' }}> <EmailList/></div>                                                      
+      <div style={{display:showEmailList ?'none' : 'block' }}> <EmailList/></div>   
+      {/* {!showEmailList && <EmailList/>}                                                    */}
     </div>
 }
 export default FormDetailes;

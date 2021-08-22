@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { Typography, TextField } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
+import { button } from '../../../style';
+import { connect } from 'react-redux';
+import { saveAnswersList } from '../../../actions/formAction';
+
 
 const useStyles = makeStyles({
   root: {
@@ -13,24 +17,28 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function Region() {
+function DiscreteSlider(props) {
+  const [answersArray, setAnswersArray] = useState([0, 100, 10]);
   const classes = useStyles();
+  const buttonStyle = button();
 
-  const [min, setMin] = useState("10");
-  const [max, setMax] = useState('100');
-  const [step, setStep] = useState('10');
+  const [min, setMin] = useState();
+  const [max, setMax] = useState(100);
+  const [step, setStep] = useState(10);
 
-  const marks = [
-    min, max
-  ];
+  useEffect(() => {
+    setAnswersArray([min, max, step]);
+    props.saveAnswersList(JSON.stringify(answersArray));
+    console.log('vhbjhn', answersArray);
+  }, [min, max, step]);
+
   return (
     <div className={classes.root}>
-      <br/>
-      <div>enter min<input onBlur={(e)=>setMin(e.target.value)}/></div>
-      <div>enter max<input onBlur={(e)=>setMax(e.target.value)}/></div>
-      <div>enter step<input onBlur={(e)=>setStep(e.target.value)}/></div>
+      <div>enter min<input type="number" onBlur={(e) => setMin(e.target.value)} /></div>
+      <div>enter max<input type="number" onBlur={(e) => setMax(e.target.value)} /></div>
+      <div>enter step<input type="number" onBlur={(e) => setStep(e.target.value)} /></div>
       <Typography id="discrete-slider" gutterBottom>
-        the question
+        Temperature
       </Typography>
       <Slider
         defaultValue={30}
@@ -38,10 +46,13 @@ export default function Region() {
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={step}
-        min={min}
+        marks
+        //לא הצלחנו לסדר את המינימום
+        min={0}
         max={max}
-        
       />
+
     </div>
   );
 }
+export default connect(null, { saveAnswersList })(DiscreteSlider);

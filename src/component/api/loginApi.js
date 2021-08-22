@@ -3,7 +3,7 @@ export const loginApi = (email, password) => {
         .then(response => {
             if (response.status == 401) {
                 alert("שם משתמש או סיסמא אינם תקינים");
-                throw new Error("Status Code is:" + response.status);
+                console.log("Status Code is:" + response.status);
             }
             else if (response.ok) {
                 response.json()
@@ -14,7 +14,7 @@ export const loginApi = (email, password) => {
                     });
             }
             else {
-                throw new Error("Status Code is:" + response.status);
+               console.log("Status Code is:" + response.status);
             }
         })
 }

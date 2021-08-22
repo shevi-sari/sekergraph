@@ -1,3 +1,30 @@
+.form{
+    /* position: absolute;
+    overflow: visible;
+    width: 398px;
+    height: 97px; */
+    /* left: 444px;
+    top: 568px; */
+    opacity: 0.38;
+    border-style: solid;
+    border-color: rgba(216,216,216,1);
+    height: 2rem;
+    height: 4rem;
+    width: 15rem;
+    margin:0.5rem;
+    color: rgba(212,84,103,1);
+}
+.border{
+    opacity: 0.38;
+    fill: rgba(41,41,41,1);
+    stroke: rgba(216,216,216,1);
+    stroke-width: 2px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+
 /* .div1 {
     position: relative;
     padding: 20px;

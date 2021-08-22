@@ -19,8 +19,9 @@ function EmailList() {
 
 
     useEffect(async () => {
-        const f = await getEmailByForm()
-        SetEmails(f)
+        const form=sessionStorage.getItem('form').emails
+        // const f = await getEmailByForm()
+        SetEmails(form)
         printList();
     }, []);
 

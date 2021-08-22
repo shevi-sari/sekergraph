@@ -51,6 +51,7 @@ function Signup() {
 
                 <div  viewBox="0 0 460.192 1">
                     <TextField id="Line_1" d="M 460.1918029785156 0 L 0 0"
+                    size={'small'}
                      className={classes.root}
                     InputProps={{
                         style: {
@@ -82,6 +83,7 @@ function Signup() {
                 </div>
                 <div>
                     <TextField
+                    size={'big'}
                      className={classes.root}
                     InputProps={{
                         style: {

@@ -9,7 +9,11 @@ import { textFeild } from '../../../style';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Clear';
 import Fab from '@material-ui/core/Fab';
-function CheckboxLabels() {
+import { connect } from 'react-redux';
+import { saveAnswersList } from '../../../actions/formAction';
+import { button } from '../../../style'
+
+function CheckboxLabels(props) {
     const [state, setState] = React.useState({
         checkedA: true,
         checkedB: true,
@@ -20,19 +24,17 @@ function CheckboxLabels() {
     const [tmpAns, setTmpAns] = useState("");
     const [ansToRemove, SetAnsToRemove] = useState('');
     const [tmp, setTmp] = useState(true);
+   
     useEffect(() => {
-
         let num = (answersArray.indexOf(ansToRemove))
         const atempAns = (answersArray.splice(num, 1));
+        props.saveAnswersList(JSON.stringify(answersArray),);
         setTmp(!tmp);
     }, [ansToRemove]);
-    useEffect(() => {
-
-
-    }, [tmp]);
+    const buttonStyle = button();
     const GreenCheckbox = withStyles({
         root: {
-            color: green[400],
+            color: green[400],  
             '&$checked': {
                 color: green[600],
             },
@@ -44,37 +46,41 @@ function CheckboxLabels() {
     };
     const classes = textFeild();
     const addAns = () => {
-        setAnswersArray([...answersArray, tmpAns])
-        setTmpAns("")
+        setAnswersArray([...answersArray, tmpAns]);
+        setTmpAns("");
+        props.saveAnswersList(JSON.stringify(answersArray));
     }
 
 
 
     return (<div>
- {/* <FormControlLabel
+        {/* <FormControlLabel
                             control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
                         /> */}
-        <FormGroup row>
+       
+     
+      <FormGroup row>
 
             {answersArray.map(answer => <div>
                 <Grid container className={classes.root} >
-                    
+
                     <Grid item xs={8}>{answer}
-                       
+
                         <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
                             <DeleteIcon
                                 onClick={() => {
                                     SetAnsToRemove(answer)
- }}/>
+                                }} />
                         </Fab>
-   </Grid>
+                    </Grid>
                 </Grid>
             </div>
             )}
             <TextField id="standard-basic"
                 InputProps={{
                     style: {
-                        color: "white", }
+                        color: "white",
+                    }
                 }}
                 InputLabelProps={{
                     style: {
@@ -89,6 +95,8 @@ function CheckboxLabels() {
             <button onClick={addAns}>הוסף תשובה</button>
 
         </FormGroup>
+       
+     
     </div>);
 }
-export default CheckboxLabels;
+export default connect(null, { saveAnswersList })(CheckboxLabels);

@@ -4,8 +4,8 @@ import DeleteIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import { getEmailByManeger, removeEmail } from '../api/formApi';
 import Fab from '@material-ui/core/Fab';
-import { connect } from 'react-redux';
-import { saveEmails} from '../../actions/formAction'
+import { useSelector, useDispatch } from 'react-redux';
+import { saveEmails } from '../../redux/actions/formAction'
 
 function FullListEmail(props) {
 
@@ -19,51 +19,55 @@ function FullListEmail(props) {
     const [showInput, setShowInput] = useState(false);
     const [emailToRemove, SetEmailToRemove] = useState('');
 
-    useEffect(async () => {
-       // const f = await getEmailByManeger()
-       SetEmails(JSON.parse(sessionStorage.getItem('User')).user.emails)
-        printList();
-    }, []);
+    const dispatch = useDispatch();
+
+   
 
     useEffect(() => {
         let num = (emails.indexOf(emailToRemove))
         emails.splice(num, 1);
-        props.saveEmails(JSON.stringify(emails));
+        dispatch(saveEmails(emails));
     }, [emailToRemove]);
-  
-    // useEffect(() => {
-    //     props.saveEmails(JSON.stringify(emails));
-    // }, [emails]);
 
-    // const removeEmailFromList = (e) => {
-    //     let num = (emails.indexOf(e))
-    //     let l = emails.splice(num, 0);
-    //     SetEmails(l)
-    // }
-
+    useEffect(async () => {
+        // const f = await getEmailByManeger()
+        dispatch(saveEmails(emails));
+        SetEmails(JSON.parse(sessionStorage.getItem('User')).user.emails)
+        dispatch(saveEmails(JSON.parse(sessionStorage.getItem('User')).user.emails));
+        printList();
+    }, []);
+    
     const add = () => {
         setShowInput(!showInput);
     }
+    function isNotEmail(email) {
+        let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return (!regEmail.test(email))
+    }
+
     const blur = (e) => {
-        emails.push(e);
-        setShowInput(!showInput);
-        props.saveEmails(JSON.stringify(emails));
+        if (isNotEmail(e)) alert('email: '+e+' is not valid');
+        else {
+            emails.push(e);
+            setShowInput(!showInput);
+            dispatch(saveEmails(emails));
+        }
     }
     const printList = () => {
-        return emails.map((email) => <div><br/>
+        return emails.map((email) => <div><br />
             <Grid container className={classes.root}
             >
                 <Grid item xs={8}>{email} <Fab size="small" color="secondary" aria-label="add" className={classes.margin}
-                 onClick={() => {
-                    SetEmailToRemove(email)          
-                }}>
-                            <DeleteIcon
-                                onClick={() => {
-                                    SetEmailToRemove(email)
-                                        
-                                }}
-                            />
-                        </Fab>
+                    onClick={() => {
+                        SetEmailToRemove(email)
+                    }}>
+                    <DeleteIcon
+                        onClick={() => {
+                            SetEmailToRemove(email)
+
+                        }}
+                    />
+                </Fab>
                 </Grid>
             </Grid>
         </div>)
@@ -75,4 +79,4 @@ function FullListEmail(props) {
         {showInput && <input onBlur={(e) => blur(e.target.value)} />}
     </div>
 }
-export default connect(null, { saveEmails})( FullListEmail);
+export default FullListEmail;

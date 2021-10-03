@@ -1,19 +1,49 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import {createStore,applyMiddleware} from 'redux';
-import reducers from './reducers';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './redux/reducers';
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore, persistReducer } from 'redux-persist'
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
-const store=createStore(reducers,applyMiddleware(thunk));
+import storageSession from 'redux-persist/lib/storage/session'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
+//import rootReducer from './reducers'
+const persistConfig = {
+  key: 'root',
+  storage:storage,
+}
+const persistedReducer = persistReducer(persistConfig, reducers)
+const store = createStore(persistedReducer, composeWithDevTools(
+  applyMiddleware(thunk)
+));
+
+
+let persistor = persistStore(store)
+
+// export default () => {
+//   let store = createStore(persistedReducer)
+//   let persistor = persistStore(store)
+//   return { store, persistor }
+// }
+//persistor.purge();
+  
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-    <App />
-    </Provider>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}  >
+    
+        <App />
+      
+    </PersistGate>
+</Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

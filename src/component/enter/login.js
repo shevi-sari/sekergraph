@@ -21,12 +21,14 @@ function Login() {
 
     const signup = () => {
         history.push('/signup');
+        window.location.reload();
     }
 
     const login = () => {
         loginApi(email, password)
             .then(() => {
                 history.push('/home');
+                window.location.reload();
             }).catch((error) => console.log("error##########", error))
     }
 
@@ -38,8 +40,7 @@ function Login() {
 
             <form id="form" noValidate autoComplete="off"><div>
                 <TextField id="standard-basic"
-                    InputProps={{
-                        style: {
+                    InputProps={{   style: {
                             color: "white",
                         }
                     }}

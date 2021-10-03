@@ -1,24 +1,34 @@
 
 
-	/* body{
-background-image: url('_b.png')
-    } */
+
 .img{
 	top:2rem;
-	left: 2rem;
-	width: 100rem;
+	right: 2rem;
+	width: 30rem;
 	display: fixed;
+	overflow: auto;
+	float: right;
+	/* max-width: 50%; */
 }
 .button{
 position :absolute;
 color: rgb(167, 4, 31) important! ;
-align-items: center;
+align-items: 40rem;
+
 }
 .formList{
 	position: relative;
 	flex-direction: column;
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	
 }
+/* .div{
+	clear: both;
+	display: flex;
+} */
+
 #form{
 	position: relative;
 	top: 25rem;

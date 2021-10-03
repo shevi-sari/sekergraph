@@ -1,20 +1,25 @@
 import React ,{useState}from 'react';
 import { useHistory } from "react-router-dom";
 import { Button, TextField } from '@material-ui/core';
-import DateAndTimePickers from './sendIn'
-import EmailList from './emailList'
+import DateAndTimePickers from './sendIn';
+import EmailList from './emailList';
+import {  useDispatch, useSelector } from 'react-redux';
+
 
 function FormDetailes() {
     const [showTiming, setShowTiming] = useState(true);
     const [showEmailList, setShowEmailList] = useState(true);
     const history = useHistory();
+    const form = useSelector(state => state.form);
     const newForm = () => {
 
-        history.push('/newForm')
+        history.push('/newForm');
+        window.location.reload();
     }
     const results = () => {
-
-        history.push('/results')
+        console.log("form:::::::::",form.form);
+       history.push('/results');
+       window.location.reload();
     }
 
     const sendBy = () => {

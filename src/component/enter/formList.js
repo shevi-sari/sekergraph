@@ -1,35 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { saveForm } from '../../actions/formAction'
-import './formList.css'
+import { saveForm } from '../../redux/actions/formAction';
+import './formList.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 function FormList(props) {
-    const { kind, theQuestion, answers } = props;
-    //const { form } = props;
-    //const mapStateToProps=()=>{return form:state.form;}
+
+    const [push, setPush] = useState(false)
+    const [pushf, setPushf] = useState(false)
+    const form = useSelector(state => state.form);
+    const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        if (pushf)
+         {  history.push('/formDetailes');
+          
+        window.location.reload();}
+        else
+            setPushf(true)
+    }, [push]);
     const formDetailes = (f) => {
-        props.saveForm(JSON.stringify(f));
-        
-        //sessionStorage.getItem('form', JSON.stringify(f));
-        history.push('/formDetailes')
+        // debugger
+        dispatch(saveForm(f))
+         setPush(true)
+        // console.log('f^^^^^^^^^:', f._id);
+        // console.log("form:::::::::",form.form);
+        // history.push('/formDetailes');
+        // window.location.reload();
     }
 
     return props.list.map((f) => {
-        return (<div className="form">
-            <div className="" onClick={() => formDetailes(f)} >
-                <labal >survey name :{f.name}</labal>
-                <label >send in :{f.date}</label>
+        return (<div className="">
+            <div className="form" onClick={() => formDetailes(f)} >
+                <p className="test">survey name : {f.name}</p>
+                <p className="test">send in : {Date(f.date)}</p>
             </div></div>
         )
     })
-
 }
-// const mapStateToProps = (form) => {
-//     return {
-//         ...form
-//     }
-// }
-export default connect(null, { saveForm })(FormList);
+export default FormList;
 

@@ -24,6 +24,7 @@ function Signup() {
     const signup = () => {
         signupApi ({ email, password, name }).then(() => {
             history.push('/');
+            window.location.reload();
         }).catch   ( (error)=>console.log("error##########", error))
         }
     
@@ -34,9 +35,6 @@ function Signup() {
         else
             setHasError(true)
     }, [email, name, password]);
-
-   
-
 
 
     function isNotEmail() {

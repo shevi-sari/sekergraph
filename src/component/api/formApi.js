@@ -1,7 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 export const getEmailByForm = async () => {
     try {
         var form = JSON.parse(sessionStorage.getItem('form'));
-
+        //const form = useSelector(state => state.form)
         const response = await fetch(`http://localhost:3000/form/getEmailByForm/${form._id}`)
         const data = await response.json()
         console.log(data)
@@ -24,10 +26,12 @@ export const getEmailByManeger = async () => {
         console.log("Status Code is:" + error);
     }
 }
-
-export const addEmail = async (email) => {
+/////////////////////////////////////////////////////////
+export const addEmail = async (email,form) => {
     try {
-        var form = JSON.parse(sessionStorage.getItem('form'));
+
+        //const form = useSelector(state => state.form)
+        //var form = JSON.parse(sessionStorage.getItem('form'));
 
         const response = await fetch(`http://localhost:3000/form/addEmail/${form._id}/${email}`, {
             method: "POST",
@@ -69,9 +73,10 @@ export const sendForm = async () => {
     try {
         alert('its work!!')
         console.log('its work');
-        var form = JSON.parse(sessionStorage.getItem('newForm'));
+       
 
-        const response = await fetch(`http://localhost:3000/form/sendEmail/${form._id}`, {
+       // const response = await fetch(`http://localhost:3000/form/sendEmail/${form._id}`, {
+            const response = await fetch(`http://localhost:3000/form/sendEmail/6127ad0e15dc6719b4d2af85`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -86,8 +91,8 @@ export const sendForm = async () => {
     }
 }
 
-export const toSaveForm = () => {
-    const myForm = JSON.parse(sessionStorage.getItem('form'))
+export const toSaveForm = (myForm) => {
+    //const myForm = JSON.parse(sessionStorage.getItem('form'))
     return fetch(`http://localhost:3000/form/newForm`, {
         method: "POST",
         headers: {
@@ -98,13 +103,15 @@ export const toSaveForm = () => {
         .then(response => {
             if (response.ok) {
                 response.json()
-                    .then(() => {
-                        alert("saved successfully" + " " + response.name);
+                    .then((res) => {
+                        alert("saved successfully" + " " + res.name);
+                        return res
                     })
             } else {
                 response.json()
                     .then(() => error1 => { alert(JSON.stringify(error1.errors)) })
                     .catch(error => { console.log(error); });
+                    
             }
         })
 }

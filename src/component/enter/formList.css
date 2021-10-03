@@ -1,29 +1,17 @@
 .form{
-    /* position: absolute;
-    overflow: visible;
-    width: 398px;
-    height: 97px; */
-    /* left: 444px;
-    top: 568px; */
-    opacity: 0.38;
+   
     border-style: solid;
-    border-color: rgba(216,216,216,1);
-    height: 2rem;
-    height: 4rem;
+    border-color: rgb(107 108 108);
+    text-align: left;
+    height: 5rem;
     width: 15rem;
     margin:0.5rem;
-    color: rgba(212,84,103,1);
+    color: rgb(224 108 121);
 }
-.border{
-    opacity: 0.38;
-    fill: rgba(41,41,41,1);
-    stroke: rgba(216,216,216,1);
-    stroke-width: 2px;
-    stroke-linejoin: miter;
-    stroke-linecap: butt;
-    stroke-miterlimit: 4;
-    shape-rendering: auto;
+.test{
+    margin: 0.25rem;
 }
+
 
 /* .div1 {
     position: relative;

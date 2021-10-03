@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, TextField } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 import { button } from '../../../style';
-import { connect } from 'react-redux';
-import { saveAnswersList } from '../../../actions/formAction';
+import { connect, useDispatch } from 'react-redux';
+import { saveAnswersList } from '../../../redux/actions/formAction';
 
 
 const useStyles = makeStyles({
@@ -18,35 +18,50 @@ function valuetext(value) {
 }
 
 function DiscreteSlider(props) {
-  const [answersArray, setAnswersArray] = useState([0, 100, 10]);
   const classes = useStyles();
   const buttonStyle = button();
 
-  const [min, setMin] = useState();
   const [max, setMax] = useState(100);
   const [step, setStep] = useState(10);
 
+  const marks = [{ value: 0, labal: '0' }, { value: 100, labal: '100' }]
+
   useEffect(() => {
-    setAnswersArray([min, max, step]);
-    props.saveAnswersList(JSON.stringify(answersArray));
-    console.log('vhbjhn', answersArray);
-  }, [min, max, step]);
+    if (props.hasProp) {
+      setMax(props.q.answers[0]);
+      setStep(props.q.answers[1]);
+
+    }
+  }, []);
+
+  useEffect(() => {
+
+    dispatch(saveAnswersList([parseInt(max), parseInt(step)]));
+  }, [max, step]);
+
+  const dispatch = useDispatch();
+  function valuetext(value) {
+    return value;
+  }
 
   return (
     <div className={classes.root}>
-      <div>enter min<input type="number" onBlur={(e) => setMin(e.target.value)} /></div>
-      <div>enter max<input type="number" onBlur={(e) => setMax(e.target.value)} /></div>
-      <div>enter step<input type="number" onBlur={(e) => setStep(e.target.value)} /></div>
-      <Typography id="discrete-slider" gutterBottom>
-        Temperature
-      </Typography>
+
+      {props.hasProp && <Typography id="discrete-slider-always" gutterBottom>
+        {props.q.theQuestion}
+      </Typography>}
+     { !props.hasProp && <div><div>enter max<input type="number" defaultValue={max} onBlur={(e) => setMax(e.target.value)} /></div>
+        <div>enter step<input type="number" defaultValue={step} onBlur={(e) => setStep(e.target.value)} /></div></div>}
+      {props.hasProp &&  <div><div>enter max<input type="number" defaultValue={props.q.answers[0]} onBlur={(e) => setMax(e.target.value)} /></div>
+        <div>enter step<input type="number" defaultValue={props.q.answers[1]} onBlur={(e) => setStep(e.target.value)} /></div></div>}
       <Slider
         defaultValue={30}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
+        aria-labelledby="discrete-slider-always"
+        valueLabelDisplay="on"
         step={step}
-        marks
+        marks={marks}
+
         //לא הצלחנו לסדר את המינימום
         min={0}
         max={max}
@@ -55,4 +70,4 @@ function DiscreteSlider(props) {
     </div>
   );
 }
-export default connect(null, { saveAnswersList })(DiscreteSlider);
+export default DiscreteSlider;

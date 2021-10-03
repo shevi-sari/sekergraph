@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { getEmailByForm, addEmail, removeEmail } from '../api/formApi'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import {  useDispatch, useSelector } from 'react-redux';
 
 function EmailList() {
 
@@ -17,11 +18,12 @@ function EmailList() {
     const [emailToRemove, SetEmailToRemove] = useState('');
     const [showInput, setShowInput] = useState(false);
 
-
+    const form = useSelector(state => state.form);
+    const formEmails = useSelector(state => state.form.emails);
+    
     useEffect(async () => {
-        const form=sessionStorage.getItem('form').emails
-        // const f = await getEmailByForm()
-        SetEmails(form)
+        console.log("formooooooooooo:",form);
+        SetEmails(formEmails)
         printList();
     }, []);
 
@@ -39,7 +41,7 @@ function EmailList() {
         setShowInput(!showInput);
     }
     const blur = (e) => {
-        addEmail(e).then(res => {
+        addEmail(e,form).then(res => {
             SetEmails(res);
             setShowInput(!showInput);
         });
@@ -47,7 +49,7 @@ function EmailList() {
     const classes = useStyles();
 
     const printList = () => {
-        return emails?.map((email) =>
+        return form.emails?.map((email) =>
             <div> <Grid container className={classes.root} >
                 <Grid item xs={8}>{email} <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
                             <DeleteIcon

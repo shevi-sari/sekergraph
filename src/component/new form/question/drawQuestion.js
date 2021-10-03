@@ -5,7 +5,7 @@ import Region from '../question/region';
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveForm } from '../../../redux/actions/formAction';
-
+import './drawQuestion.css'
 
 function DrawQuestion(props) {
 

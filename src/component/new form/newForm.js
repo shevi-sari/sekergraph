@@ -18,7 +18,7 @@ import { saveQuestion, saveForm } from '../../redux/actions/formAction'
 
 import DrawQuestion from './question/drawQuestion';
 import { Class } from '@material-ui/icons';
-
+import MenuIcon from '@material-ui/icons/Menu';
 
 function NewForm(props) {
   const [showEmailList, setShowEmailList] = useState(true);
@@ -130,6 +130,7 @@ function NewForm(props) {
   }
 
   return (<div >
+    
     <div className="paper">
       <div className="buttonDiv">
 
@@ -161,6 +162,7 @@ function NewForm(props) {
       </div>
      
       <div className="questionList">
+      <MenuIcon style={{alignItems:"right"}}/>
         <div className="questionListIn">
           <TextField id="standard-basic"
             onBlur={(e) => { setNameOfForm(e.target.value) }}

@@ -9,8 +9,9 @@ export const loginApi = (email, password) => {
                 response.json()
                     .then(data => {
                         console.log(data)
-                        sessionStorage.setItem('User', JSON.stringify(data));
+                     //   sessionStorage.setItem('User', JSON.stringify(data));
                         alert(email + " " + password + " " + "התחברת בהצלחה");
+                        
                     });
             }
             else {

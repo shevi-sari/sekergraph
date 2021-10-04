@@ -3,12 +3,15 @@ import { Button, TextField } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { loginApi } from '../api/loginApi.js'
 import { textFeild ,button} from '../../style'
+import { useDispatch } from 'react-redux';
+import {login} from '../../redux/actions/userActions';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hasError, setHasError] = useState(true);
     // const [disabled, setDisabled] = React.useState(true);
+    const dispatch = useDispatch();
     useEffect(() => {
         if (email !== "" & password !== "")
             setHasError(false)
@@ -24,12 +27,21 @@ function Login() {
         window.location.reload();
     }
 
-    const login = () => {
+    const login_func = () => {
+        // loginApi(email, password)
+        //     .then(() => {
+        //         history.push('/home');
+        //         window.location.reload();
+        //     }).catch((error) => console.log("error##########", error))
         loginApi(email, password)
-            .then(() => {
-                history.push('/home');
-                window.location.reload();
-            }).catch((error) => console.log("error##########", error))
+        .then(() => {
+           const data= JSON.parse(localStorage.getItem('User'));
+            dispatch(login(data.user));
+        }).then(() => {
+           // history.push('/home');
+          //  window.location.reload();
+        }).catch((error) => console.log("error##########", error))
+
     }
 
 
@@ -75,7 +87,7 @@ function Login() {
 
 
                 <br /><Button className={buttonStyle.root} variant="contained" onClick={signup}  >signup</Button>
-                <br /><Button disabled={hasError} className={buttonStyle.root} variant="contained" onClick={login}  >enter</Button>
+                <br /><Button disabled={hasError} className={buttonStyle.root} variant="contained" onClick={login_func}  >enter</Button>
             </div>
 
             </form>

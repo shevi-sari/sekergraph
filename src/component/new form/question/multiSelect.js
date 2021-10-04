@@ -113,6 +113,10 @@ import Fab from '@material-ui/core/Fab';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveAnswersList } from '../../../redux/actions/formAction';
 import { button } from '../../../style'
+import './multiSelect.css'
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 function CheckboxLabels(props) {
     const [state, setState] = React.useState({
@@ -165,49 +169,46 @@ function CheckboxLabels(props) {
     }
 
 
-
-    return (<div>
+    return (<div className={classes.root}>
+        <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup row>
         {props.hasProp && <label>{props.q.theQuestion}</label>}
-        
+        <div  className="answer">
           { answersArray.map(answer => <div>
                 <Grid container className={classes.root} >
                     <FormControlLabel
                         control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
                     />
-                    <Grid item xs={8}>{answer}
+              
+                    <div >
+                    <Grid item xs={8} style={{"max-width":"10rem"}}><span>{answer}     </span>
                         <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
                             <DeleteIcon
                                 onClick={() => {
                                     SetAnsToRemove(answer)
                                 }} />
                         </Fab>
-                    </Grid>
+                    </Grid></div>
                 </Grid>
-                
             </div>
-
             )}
 
         <TextField id="standard-basic"
-            InputProps={{
-                style: {
-                    color: "white",
-                }
-            }}
-            InputLabelProps={{
-                style: {
-                    color: "white",
-                }
-            }}
+            InputProps={{  style: { color: "white", } }}
+            InputLabelProps={{  style: {  color: "white", } }}
             className={classes.root}
             label="enter an answer"
             value={tmpAns}
             onChange={(e) => { setTmpAns(e.target.value) }}
         />
-        <button   className={buttonStyle.root} onClick={addAns}>הוסף תשובה</button>
-        </FormGroup>
-
+        <button   className={buttonStyle.root} onClick={addAns}>הוסף תשובה</button></div>
+        </FormGroup></FormControl>
+        <div className={classes.root}>
+    
+      
+      
+    
+    </div>
     </div>);
 }
 export default CheckboxLabels;

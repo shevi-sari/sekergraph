@@ -13,12 +13,12 @@ import { persistStore, persistReducer } from 'redux-persist'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 import storageSession from 'redux-persist/lib/storage/session'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import sesstionStorage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 //import rootReducer from './reducers'
 const persistConfig = {
   key: 'root',
-  storage:storage,
+  storage:sesstionStorage,
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
 const store = createStore(persistedReducer, composeWithDevTools(

@@ -5,14 +5,14 @@ import Region from '../question/region';
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveForm } from '../../../redux/actions/formAction';
-import './drawQuestion.css'
+
 
 function DrawQuestion(props) {
 
     const [theQuestion, setTheQuestion] = useState();
         const [i,setI]=useState(0)
 
-    const form = useSelector(state => state.form);
+    const form = useSelector(state => state.formReducer.form);
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -6,6 +6,7 @@ import Signup from './component/enter/signup';
 import NewForm from './component/new form/newForm';
 import FormDetailes from './component/old form/formDetailes';
 import Results from './component/enter/results';
+import FormToDesign from './component/new form/formToDesign';
 import './logo.css'
 
 
@@ -44,7 +45,9 @@ function App() {
                     <span>sekergraph</span>
                 </div>
             </div>
-<div></div>
+<div>
+
+</div>
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -64,6 +67,9 @@ function App() {
           </Route>
           <Route path="/results">
             <Results />
+          </Route>
+          <Route path="/formToDesign">
+            <FormToDesign />
           </Route>
         </Switch>
       </Router>

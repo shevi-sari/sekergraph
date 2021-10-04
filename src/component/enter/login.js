@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
-import { loginApi } from '../api/loginApi.js'
-import { textFeild ,button} from '../../style'
+import { loginApi } from '../api/loginApi.js';
+import { textFeild ,button} from '../../style';
 import { useDispatch } from 'react-redux';
 import {login} from '../../redux/actions/userActions';
+
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hasError, setHasError] = useState(true);
+    const dispatch = useDispatch();
     // const [disabled, setDisabled] = React.useState(true);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -28,20 +30,14 @@ function Login() {
     }
 
     const login_func = () => {
-        // loginApi(email, password)
-        //     .then(() => {
-        //         history.push('/home');
-        //         window.location.reload();
-        //     }).catch((error) => console.log("error##########", error))
         loginApi(email, password)
-        .then(() => {
-           const data= JSON.parse(localStorage.getItem('User'));
-            dispatch(login(data.user));
-        }).then(() => {
-           // history.push('/home');
-          //  window.location.reload();
-        }).catch((error) => console.log("error##########", error))
-
+            .then(() => {
+               const data= JSON.parse(localStorage.getItem('User'));
+                dispatch(login(data));
+            }).then(() => {
+                history.push('/home');
+                window.location.reload();
+            }).catch((error) => console.log("error##########", error))
     }
 
 
@@ -91,10 +87,6 @@ function Login() {
             </div>
 
             </form>
-
-
-
-
 
         </div>
     )

@@ -1,4 +1,4 @@
-import React ,{useEffect}from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -27,18 +27,17 @@ const store = createStore(persistedReducer, composeWithDevTools(
 
 
 let persistor = persistStore(store)
-
 // export default () => {
 //   let store = createStore(persistedReducer)
 //   let persistor = persistStore(store)
 //   return { store, persistor }
 // }
-//persistor.purge();
-  
+
+persistStore(store, hardSet)
 ReactDOM.render(
   <React.StrictMode>
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}  >
+    <PersistGate loading={null} persistor={persistor}>
     
         <App />
       

@@ -19,9 +19,9 @@ function FullListEmail(props) {
     const [showInput, setShowInput] = useState(false);
     const [emailToRemove, SetEmailToRemove] = useState('');
 
+    
+    const user = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
-
-   
 
     useEffect(() => {
         let num = (emails.indexOf(emailToRemove))
@@ -30,13 +30,12 @@ function FullListEmail(props) {
     }, [emailToRemove]);
 
     useEffect(async () => {
-        // const f = await getEmailByManeger()
-        dispatch(saveEmails(emails));
-        SetEmails(JSON.parse(sessionStorage.getItem('User')).user.emails)
-        dispatch(saveEmails(JSON.parse(sessionStorage.getItem('User')).user.emails));
+        SetEmails(user.emails
+            );
+        dispatch(saveEmails(user.emails));
         printList();
     }, []);
-    
+
     const add = () => {
         setShowInput(!showInput);
     }
@@ -46,7 +45,7 @@ function FullListEmail(props) {
     }
 
     const blur = (e) => {
-        if (isNotEmail(e)) alert('email: '+e+' is not valid');
+        if (isNotEmail(e)) alert('email: ' + e + ' is not valid');
         else {
             emails.push(e);
             setShowInput(!showInput);

@@ -3,18 +3,16 @@
 
 .img{
 	top:2rem;
-	right: 2rem;
-	width: 30rem;
+	left: 2rem;
+	width: 100rem;
 	display: fixed;
 	overflow: auto;
 	float: right;
-	/* max-width: 50%; */
 }
 .button{
 position :absolute;
 color: rgb(167, 4, 31) important! ;
-align-items: 40rem;
-
+align-items: center;
 }
 .formList{
 	position: relative;

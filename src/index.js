@@ -1,4 +1,4 @@
-import React ,{useEffect}from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -12,13 +12,14 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore, persistReducer } from 'redux-persist'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
-import storageSession from 'redux-persist/lib/storage/session'
+
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 //import rootReducer from './reducers'
 const persistConfig = {
   key: 'root',
   storage:storage,
+  
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
 const store = createStore(persistedReducer, composeWithDevTools(
@@ -27,18 +28,17 @@ const store = createStore(persistedReducer, composeWithDevTools(
 
 
 let persistor = persistStore(store)
-
 // export default () => {
 //   let store = createStore(persistedReducer)
 //   let persistor = persistStore(store)
 //   return { store, persistor }
 // }
-//persistor.purge();
-  
+
+persistStore(store, hardSet)
 ReactDOM.render(
   <React.StrictMode>
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}  >
+    <PersistGate loading={null} persistor={persistor}>
     
         <App />
       

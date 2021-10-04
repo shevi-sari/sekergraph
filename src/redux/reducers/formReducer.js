@@ -1,8 +1,8 @@
 const INITIAL_STATE = {
-    form: '',
+    //form: '',
     answers: '',
-
-
+    question:'',
+    emails:''
 }
 
 export const formReducer = (state = INITIAL_STATE, action) => {
@@ -27,23 +27,7 @@ export const formReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state, emails: action.payload
             }
-        case 'RESET_REDUCER_GROUP':
-            return { ...INITIAL_STATE };
-        //case 'persist/REHYDRATE':
-      //      return ({ tokenExpires: action.payload && action.payload.auth && action.payload.auth.tokenExpires } || {});
-    //   return {
-    //     INITIAL_STATE
-    //   } 
-   
-      default:
+        default:
             return state;
     }
 }
-// export default function reducer(state = initialState, action) {
-//     switch (action.type) {
-//         case RESET_REDUCER_GROUP:
-//             return { ...initialState };
-//         default:
-//             return state;
-//             }
-// }

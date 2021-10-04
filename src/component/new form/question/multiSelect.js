@@ -105,7 +105,7 @@ import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Button, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { textFeild } from '../../../style';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Clear';
@@ -127,7 +127,7 @@ function CheckboxLabels(props) {
     const [tmp, setTmp] = useState(true);
 
     const dispatch = useDispatch();
-    const answers = useSelector( state =>state.form.answers)
+    const answers = useSelector( state =>state.formReducer.answers)
 
     const [hasProps, setHasProps] = useState(false);
     useEffect(() => {
@@ -201,11 +201,11 @@ function CheckboxLabels(props) {
                 }
             }}
             className={classes.root}
-            label="enter an answer"
+            label="enter a answer"
             value={tmpAns}
             onChange={(e) => { setTmpAns(e.target.value) }}
         />
-        <button   className={buttonStyle.root} onClick={addAns}>הוסף תשובה</button>
+        <button onClick={addAns}>הוסף תשובה</button>
         </FormGroup>
 
     </div>);

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { getEmailByForm, addEmail, removeEmail } from '../api/formApi'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import {  useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function EmailList() {
 
@@ -14,34 +14,32 @@ function EmailList() {
             color: theme.palette.text.primary,
         },
     }));
-    const [emails, SetEmails] = useState([])
+    const formEmails = useSelector(state => state.formReducer.form.emails);
+    const [emails, SetEmails] = useState(formEmails)
     const [emailToRemove, SetEmailToRemove] = useState('');
     const [showInput, setShowInput] = useState(false);
 
-    const form = useSelector(state => state.form);
-    const formEmails = useSelector(state => state.form.emails);
-    
+    const form = useSelector(state => state.formReducer.form);
+   
+
+    // useEffect(() => {
+    //     removeEmail(emailToRemove, form).then(res => {
+    //         SetEmails(res);
+    //     });
+    // }, [emailToRemove]);
+
     useEffect(async () => {
-        console.log("formooooooooooo:",form);
+        console.log("formooooooooooofl:", formEmails);
         SetEmails(formEmails)
+        console.log("formoooooooooooflgggggjjjj:", emails);
         printList();
     }, []);
-
-
-    useEffect(() => {
-        removeEmail(emailToRemove).then(res => {
-            SetEmails(res);
-        }
-        );
-
-    }, [emailToRemove]);
-
 
     const add = () => {
         setShowInput(!showInput);
     }
     const blur = (e) => {
-        addEmail(e,form).then(res => {
+        addEmail(e, form).then(res => {
             SetEmails(res);
             setShowInput(!showInput);
         });
@@ -49,28 +47,25 @@ function EmailList() {
     const classes = useStyles();
 
     const printList = () => {
-        return form.emails?.map((email) =>
+        return emails?.map((email) =>
             <div> <Grid container className={classes.root} >
                 <Grid item xs={8}>{email} <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
-                            <DeleteIcon
-                                onClick={() => {
-                                    SetEmailToRemove(email)
-                                        
-                                }}
-                            />
-                        </Fab>
+                    <DeleteIcon
+                        onClick={() => {
+                            SetEmailToRemove(email)
+                        }}
+                    />
+                </Fab>
                 </Grid>
             </Grid>
-
-            
             </div>)
     }
 
     return <div >
         {printList()}
-        
+
         <Fab size="small" color="secondary" aria-label="add" className={classes.margin} onClick={add}>
-          <AddIcon />
+            <AddIcon />
         </Fab>
         {showInput && <input onBlur={(e) => blur(e.target.value)} />}
 

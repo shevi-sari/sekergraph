@@ -13,11 +13,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { sendForm, toSaveForm } from '../api/formApi'
 import './newForm.css';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import { saveQuestion, saveForm } from '../../redux/actions/formAction'
 
 import DrawQuestion from './question/drawQuestion';
-import { Class } from '@material-ui/icons';
 
 
 function NewForm(props) {
@@ -31,16 +30,15 @@ function NewForm(props) {
   const [formName, setFormName] = useState('')
   const [nameOfForm, setNameOfForm] = useState('');
 
-  const form = useSelector(state => state.form.form)
-  const emails = useSelector(state => state.form.emails)
-  const answers = useSelector(state => { ; return state.form.answers })
+  const form = useSelector(state => state.formReducer.form)
+  const emails = useSelector(state => state.formReducer.emails)
+  const answers = useSelector( state =>{; return state.formReducer.answers })
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     if (sendEmail)
-      sendForm(form)
+      sendForm()
   }, [sendEmail]);
-
   useEffect(() => {
   }, [questionList]);
 
@@ -57,26 +55,12 @@ function NewForm(props) {
     },
     InputLabel: {
       color: 'white'
-    },
-    button: {
-      background: '#e06c79',
-      color: 'white',
-      'border-top-left-radius': '1.5625rem',
-      'border-bottom-left-radius': '1.5625rem',
-      'font-size': '1rem',
-      padding: '0.5rem 3rem',
-      'margin-top': '2rem',
-      top: '8rem'
-      // 'font-size':'0.85rem'
     }
 
   }));
 
   const save = () => {
-    addFormToRedux()
-
-    toSaveForm(form).then((res) => { dispatch(saveForm(res)) }).catch
-      (alert('faild to save'));
+    toSaveForm(form);
     setOpenAlert(true);
   };
   const closeOpenAlert = () => {
@@ -106,7 +90,7 @@ function NewForm(props) {
     sending();
   }
   const addFormToRedux = () => {
-    console.log("ans:", answers);
+   console.log("ans:",emails);
 
     let quest = {
       theQuestion: theQuestion,
@@ -126,104 +110,126 @@ function NewForm(props) {
     dispatch(saveForm(myForm))
     //setDraw(false);
     setKind(0);
-    console.log("ans2:", answers);
+    console.log("ans2:",answers);
   }
+  
+  return (<div className="paper">
+    <div>
 
-  return (<div >
-    <div className="paper">
-      <div className="buttonDiv">
 
-        <Button className={classes.button} variant="contained" onClick={save} >save</Button>
-        <Dialog
-          open={openAlert}
-          onClose={closeOpenAlert}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Do you want to send this form now?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={closeOpenAlert} color="primary">
-              NO
-            </Button>
-            <Button onClick={yes} color="primary" autoFocus>
-              YES
-            </Button>
-          </DialogActions>
-        </Dialog>
+      <Button className={buttonStyle.root} variant="contained" onClick={save} >save</Button>
+      <Dialog
+        open={openAlert}
+        onClose={closeOpenAlert}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Do you want to send this form now?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeOpenAlert} color="primary">
+            NO
+          </Button>
+          <Button onClick={yes} color="primary" autoFocus>
+            YES
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-        <Button className={classes.button} variant="contained" onClick={emailList} >email to send</Button><br />
-        <div style={{ display: showEmailList ? 'none' : 'block' }}> <FullListEmail /></div>
-      </div>
-     
-      <div className="questionList">
-        <div className="questionListIn">
+      <Button className={buttonStyle.root} variant="contained" onClick={emailList} >email to send</Button><br />
+     <div style={{ display: showEmailList ? 'none' : 'block' }}> <FullListEmail /></div>
+      <div>
+        <TextField id="standard-basic"
+          onBlur={(e) => {
+            setNameOfForm(e.target.value)
+          }}
+          InputProps={{
+            style: {
+              color: "white",
+            }
+          }}
+          InputLabelProps={{
+            style: {
+              color: "white",
+            }
+          }}
+          className={textFeildStyle.root}
+          label="name of the form"
+
+        />
+      </div >
+      <Fab
+
+        onClick={addFormToRedux}
+        variant="extended"
+        size="medium"
+        color="secondary"
+        aria-label="add"
+        // className={classes.margin}
+        className={buttonStyle.root}
+      >
+        <AddIcon className={classes.extendedIcon} />
+        add question
+      </Fab>
+
+      <div>
+
+        <div className={"question"}>
+          <FormControl className={classes.formControl}>
+            <InputLabel className={textFeildStyle.root} id="demo-controlled-open-select-label"
+              style={{ color: "white" }}>
+              question's kind</InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              open={openQuestion}
+              onClose={CloseOpenQuestion}
+              onOpen={OpenOpenQuestion}
+              value={kind}
+              onChange={handleChange}
+              style={{ color: "white" }}
+            >
+
+              <MenuItem value={10}>open question</MenuItem>
+              <MenuItem value={20}>region</MenuItem>
+              <MenuItem value={30}>one selected</MenuItem>
+              <MenuItem value={40}>multy selected</MenuItem>
+            </Select>
+          </FormControl>
+
           <TextField id="standard-basic"
-            onBlur={(e) => { setNameOfForm(e.target.value) }}
-            InputProps={{ style: { color: "white", } }}
-            InputLabelProps={{ style: { color: "white", } }}
+            InputProps={{
+              style: {
+                color: "white",
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "white",
+              }
+            }}
+
             className={textFeildStyle.root}
-            label="name of the form"
-          />
+            label="enter a question"
+            onBlur={(e) => {
+              setTheQuestion(e.target.value)
 
-          <Fab
-            onClick={addFormToRedux}
-            variant="extended"
-            size="medium"
-            color="secondary"
-            aria-label="add"
-            // className={classes.margin}
-            className={buttonStyle.root}
-          >
-            <AddIcon className={classes.extendedIcon} />
-            add a question
-          </Fab>
+            }}
+          /></div>
+        {(kind == 20) && <Region />}
+        {(kind == 40 || kind == 30) && <CheckboxLabels  />}
 
-          <div>
-            <div className={"question"}>
-              <FormControl className={classes.formControl}>
-                <InputLabel className={textFeildStyle.root} id="demo-controlled-open-select-label"
-                  style={{ color: "white" }}>
-                  question's kind</InputLabel>
-                <Select
-                  labelId="demo-controlled-open-select-label"
-                  id="demo-controlled-open-select"
-                  open={openQuestion}
-                  onClose={CloseOpenQuestion}
-                  onOpen={OpenOpenQuestion}
-                  value={kind}
-                  onChange={handleChange}
-                  style={{ color: "white", width: "10rem" }}
-                >
-                  <MenuItem value={10}>open question</MenuItem>
-                  <MenuItem value={20}>region</MenuItem>
-                  <MenuItem value={30}>one selected</MenuItem>
-                  <MenuItem value={40}>multy selected</MenuItem>
-                </Select>
-              </FormControl>
+      </div >
 
-              <TextField id="standard-basic"
-                InputProps={{ style: { color: "white", } }}
-                InputLabelProps={{ style: { color: "white" } }}
-                className={textFeildStyle.root}
-                label="enter a question"
-                onBlur={(e) => { setTheQuestion(e.target.value) }}
-              />
-              {(kind == 20) && <Region />}
-              {(kind == 40 || kind == 30) && <CheckboxLabels />}
-            </div>
-          </div >
 
-          <DrawQuestion questionList={questionList} />
-          <FormToDesign />
-        </div >
-      </div>
+      <DrawQuestion questionList={questionList} />
+
     </div>
-  </div >)
+  </div>)
 
 }
 export default NewForm;

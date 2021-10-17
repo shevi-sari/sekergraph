@@ -7,13 +7,14 @@ export const loginApi = (email, password) => {
                 console.log("Status Code is:" + response.status);
             }
             else if (response.ok) {
-                response.json()
+                 alert(email + " " + password + " " + "התחברת בהצלחה");
+             return   response.json()
                     .then(data => {
                         console.log(data)
-                     //   sessionStorage.setItem('User', JSON.stringify(data));
-                        alert(email + " " + password + " " + "התחברת בהצלחה");
-                        
+                       
+                        return data.user 
                     });
+                  
             }
             else {
                 console.log("Status Code is:" + response.status);

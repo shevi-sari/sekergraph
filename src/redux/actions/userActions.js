@@ -6,3 +6,11 @@ export const login = (user) => {
         })
     }
 }
+export const initialState = () => {
+    return function (dispatch) {
+        dispatch({
+            type: 'RESET_REDUCER_GROUP',
+            payload: null
+        })
+    }
+} 

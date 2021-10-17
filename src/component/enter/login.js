@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { loginApi } from '../api/loginApi.js';
-import { textFeild ,button} from '../../style';
+import { textFeild, button } from '../../style';
 import { useDispatch } from 'react-redux';
-import {login} from '../../redux/actions/userActions';
+import { login } from '../../redux/actions/userActions';
+import { initialState } from '../../redux/actions/userActions';
 
 
 function Login() {
@@ -13,7 +14,10 @@ function Login() {
     const [hasError, setHasError] = useState(true);
     const dispatch = useDispatch();
     // const [disabled, setDisabled] = React.useState(true);
-    const dispatch = useDispatch();
+    useEffect(async () => {
+       
+        dispatch(initialState())
+    }, []);
     useEffect(() => {
         if (email !== "" & password !== "")
             setHasError(false)
@@ -31,9 +35,9 @@ function Login() {
 
     const login_func = () => {
         loginApi(email, password)
-            .then(() => {
-               const data= JSON.parse(localStorage.getItem('User'));
-                dispatch(login(data));
+            .then((data) => {
+                console.log('data.user',data);
+                dispatch(login(data.user));
             }).then(() => {
                 history.push('/home');
                 window.location.reload();
@@ -48,7 +52,8 @@ function Login() {
 
             <form id="form" noValidate autoComplete="off"><div>
                 <TextField id="standard-basic"
-                    InputProps={{   style: {
+                    InputProps={{
+                        style: {
                             color: "white",
                         }
                     }}

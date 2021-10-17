@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function FormList(props) {
 
     const dispatch = useDispatch();
-    const form = useSelector(state => state.formReducer.form);
+     const form = useSelector(state => state.form.form);
 
     const history = useHistory();
 

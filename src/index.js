@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -12,13 +13,13 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore, persistReducer } from 'redux-persist'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
-import storageSession from 'redux-persist/lib/storage/session'
-import sesstionStorage from 'redux-persist/lib/storage' // defaults to localStorage for web
+//import storageSession from 'redux-persist/lib/storage/session'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
-//import rootReducer from './reducers'
+
 const persistConfig = {
   key: 'root',
-  storage:sesstionStorage,
+  storage:storage,
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
 const store = createStore(persistedReducer, composeWithDevTools(

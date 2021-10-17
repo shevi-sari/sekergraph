@@ -1,8 +1,8 @@
 const INITIAL_STATE = {
     //form: '',
     answers: '',
-    question:'',
-    emails:''
+    question: '',
+    emails: ''
 }
 
 export const formReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +27,9 @@ export const formReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state, emails: action.payload
             }
+        case 'RESET_REDUCER_GROUP':
+            return { ...INITIAL_STATE };
+
         default:
             return state;
     }

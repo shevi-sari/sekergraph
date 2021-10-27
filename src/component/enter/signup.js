@@ -24,7 +24,7 @@ function Signup() {
     const signup = () => {
         signupApi ({ email, password, name }).then(() => {
             history.push('/');
-            window.location.reload();
+           // window.location.reload();
         }).catch   ( (error)=>console.log("error##########", error))
         }
     

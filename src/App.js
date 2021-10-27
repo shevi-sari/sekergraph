@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react';
+import React  from 'react';
 import './App.css';
 import Login from './component/enter/login';
 import Home from './component/enter/home';
@@ -7,6 +7,7 @@ import NewForm from './component/new form/newForm';
 import FormDetailes from './component/old form/formDetailes';
 import Results from './component/enter/results';
 import FormToDesign from './component/new form/formToDesign';
+import FormToFill from './component/form to fill/formToFill';
 import './logo.css'
 
 
@@ -14,17 +15,38 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  useParams
 } from "react-router-dom";
 
 
 
+//import { useParams } from "@reach/router"
+
+// route: /user/:userName
+// const User = () => {
+//   const params = useParams();
+
+//   return <h1>{params.userName}</h1>
+// }
+function BlogPost() {
+  let  {formId} = useParams();
+  console.log(formId);
+  return <FormToFill formId={formId}/>
+  // return <div>Now showing post {formId}</div>;
+}
 
 function App() {
 
+  // function form() {
+  //   const {formId}=useParams();
+  // console.log('params',formId);
+  // return(<div></div>)
+  // }
+  // const {formId}=useParams();
+  // console.log('params',formId);
   return (
     <div>
-        <div id="Group_176">
+        <div className="logo">
                 <svg className="Path_374_bc" viewBox="471.676 156.562 12.673 47.78">
                     <path id="Path_374_bc" d="M 471.6759948730469 204.3419952392578 C 475.0339965820313 202.7819976806641 476.6709899902344 201.3099975585938 479.0289916992188 199.5200042724609 C 480.8949890136719 198.1020050048828 482.6700134277344 196.3040008544922 484.3489990234375 194.7200012207031 C 484.3489990234375 183.677001953125 484.322998046875 167.6060028076172 484.322998046875 156.5619964599609 L 471.6759948730469 163.22900390625 L 471.6759948730469 204.3419952392578 Z">
                     </path>
@@ -70,6 +92,13 @@ function App() {
           </Route>
           <Route path="/formToDesign">
             <FormToDesign />
+          </Route>
+          <Route path="/formToFill/:formId">
+            {/* {BlogPost} */}
+          {/* formId={params.formId} */}
+          <BlogPost/>
+          {/* <FormToFill formId={formId} /> */}
+           
           </Route>
         </Switch>
       </Router>

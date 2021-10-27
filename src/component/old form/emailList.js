@@ -14,12 +14,12 @@ function EmailList() {
             color: theme.palette.text.primary,
         },
     }));
-    const formEmails = useSelector(state => state.formReducer.form.emails);
+    const formEmails = useSelector(state => state.form.form.emails);
     const [emails, SetEmails] = useState(formEmails)
     const [emailToRemove, SetEmailToRemove] = useState('');
     const [showInput, setShowInput] = useState(false);
 
-    const form = useSelector(state => state.formReducer.form);
+    const form = useSelector(state => state.form.form);
    
 
     // useEffect(() => {

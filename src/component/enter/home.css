@@ -1,11 +1,13 @@
 
-
+/* body{
+	background-image: url("./_b@2x.png");
+} */
 
 .img{
-	top:2rem;
-	left: 2rem;
-	width: 100rem;
-	display: fixed;
+	top:13.5rem;
+	right: 2rem;
+	width: 25rem;
+	position: fixed;
 	overflow: auto;
 	float: right;
 }
@@ -27,7 +29,7 @@ align-items: center;
 	display: flex;
 } */
 
-#form{
+#form1{
 	position: relative;
 	top: 25rem;
 	/* display: flex; */

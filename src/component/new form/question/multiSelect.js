@@ -131,7 +131,7 @@ function CheckboxLabels(props) {
     const [tmp, setTmp] = useState(true);
 
     const dispatch = useDispatch();
-    const answers = useSelector( state =>state.formReducer.answers)
+    const answers = useSelector( state =>state.form.answers)
 
     const [hasProps, setHasProps] = useState(false);
     useEffect(() => {

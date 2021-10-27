@@ -19,13 +19,14 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 
 const persistConfig = {
   key: 'root',
-  storage:storage,
+  storage: storage,
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
+
 const store = createStore(persistedReducer, composeWithDevTools(
   applyMiddleware(thunk)
 ));
-
+window.store = store;
 
 let persistor = persistStore(store)
 // export default () => {
@@ -37,13 +38,13 @@ let persistor = persistStore(store)
 persistStore(store, hardSet)
 ReactDOM.render(
   <React.StrictMode>
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-    
-        <App />
-      
-    </PersistGate>
-</Provider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+
+      <App />
+
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

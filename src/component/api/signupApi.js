@@ -1,6 +1,6 @@
 export const signupApi = (user) => {
     console.log("user", user);
-    return fetch(`http://localhost:3000/signUp`, {
+    return fetch(`http://localhost:3012/signUp`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

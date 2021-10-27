@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField, Fab, Select, MenuItem, InputLabel, makeStyles, FormControl } from '@material-ui/core';
+import { Button, TextField, Fab, Select, MenuItem, InputLabel, makeStyles, FormControl, IconButton } from '@material-ui/core';
 import FullListEmail from './fullListEmails';
-import FormToDesign from './formToDesign';
+// import FormToDesign from './formToDesign';
 import { textFeild, button } from '../../style'
 import CheckboxLabels from './question/multiSelect';
 import AddIcon from '@material-ui/icons/Add';
@@ -15,11 +15,11 @@ import { sendForm, toSaveForm } from '../api/formApi'
 import './newForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveQuestion, saveForm } from '../../redux/actions/formAction'
-
 import DrawQuestion from './question/drawQuestion';
-import { Class } from '@material-ui/icons';
-import MenuIcon from '@material-ui/icons/Menu';
-
+import Menu from '../enter/menu'
+import { useHistory } from "react-router-dom";
+import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 function NewForm(props) {
   const [showEmailList, setShowEmailList] = useState(true);
   const [openQuestion, setOpenQuestion] = useState(false);
@@ -28,14 +28,15 @@ function NewForm(props) {
   const [theQuestion, setTheQuestion] = useState('');
   const [kind, setKind] = useState('');
   const [questionList, setQuestionList] = useState([])
-  const [formName, setFormName] = useState('')
+  // const [formName, setFormName] = useState('')
   const [nameOfForm, setNameOfForm] = useState('');
 
   const form = useSelector(state => state.form.form)
   const emails = useSelector(state => state.form.emails)
   const answers = useSelector(state => { ; return state.form.answers })
+  const user = useSelector(state => state.user.user)
   const dispatch = useDispatch();
-
+  const history = useHistory();
   useEffect(() => {
     if (sendEmail)
       sendForm(form)
@@ -43,6 +44,7 @@ function NewForm(props) {
 
   useEffect(() => {
   }, [questionList]);
+
 
   const emailList = () => {
     setShowEmailList(!showEmailList)
@@ -64,7 +66,7 @@ function NewForm(props) {
       'border-top-left-radius': '1.5625rem',
       'border-bottom-left-radius': '1.5625rem',
       'font-size': '1rem',
-      padding: '0.5rem 3rem',
+      padding: '0.5rem 2rem',
       'margin-top': '2rem',
       top: '8rem'
       // 'font-size':'0.85rem'
@@ -73,6 +75,7 @@ function NewForm(props) {
   }));
 
   const save = () => {
+    debugger
     addFormToRedux()
 
     toSaveForm(form).then((res) => { dispatch(saveForm(res)) }).catch
@@ -106,6 +109,7 @@ function NewForm(props) {
     sending();
   }
   const addFormToRedux = () => {
+    debugger
     console.log("ans:", answers);
 
     let quest = {
@@ -119,7 +123,7 @@ function NewForm(props) {
     let myForm = {
       name: nameOfForm,
       date: new Date(),
-      managerId: JSON.parse(sessionStorage.getItem('User')).user._id,
+      managerId: user._id,
       emails: emails,
       questionList: [...questionList, quest]
     }
@@ -130,11 +134,11 @@ function NewForm(props) {
   }
 
   return (<div >
-    
+
     <div className="paper">
       <div className="buttonDiv">
-
-        <Button className={classes.button} variant="contained" onClick={save} >save</Button>
+<div >
+        <Button className={classes.button} variant="contained" onClick={save} ><SaveAltIcon style={{padding:"0.25rem"}}/>save</Button>
         <Dialog
           open={openAlert}
           onClose={closeOpenAlert}
@@ -156,13 +160,14 @@ function NewForm(props) {
             </Button>
           </DialogActions>
         </Dialog>
-
-        <Button className={classes.button} variant="contained" onClick={emailList} >email to send</Button><br />
-        <div style={{ display: showEmailList ? 'none' : 'block' }}> <FullListEmail /></div>
-      </div>
-     
+        </div>
+        <div ><Button className={classes.button} variant="contained" onClick={emailList} ><AlternateEmailIcon style={{padding:"0.25rem"}}/>     email to send</Button></div>
+        <div style={{ display: showEmailList ? 'none' : 'inline' ,margin:"0.5rem",top:'200rem'}}> <FullListEmail /></div>
+    {/* {  showEmailList && <FullListEmail/> } */}
+        </div>
+      
       <div className="questionList">
-      <MenuIcon style={{alignItems:"right"}}/>
+     <Menu/>
         <div className="questionListIn">
           <TextField id="standard-basic"
             onBlur={(e) => { setNameOfForm(e.target.value) }}
@@ -171,7 +176,7 @@ function NewForm(props) {
             className={textFeildStyle.root}
             label="name of the form"
           />
-
+  
           <Fab
             onClick={addFormToRedux}
             variant="extended"
@@ -184,7 +189,7 @@ function NewForm(props) {
             <AddIcon className={classes.extendedIcon} />
             add a question
           </Fab>
-
+       
           <div>
             <div className={"question"}>
               <FormControl className={classes.formControl}>
@@ -220,8 +225,8 @@ function NewForm(props) {
             </div>
           </div >
 
-          <DrawQuestion questionList={questionList} />
-          <FormToDesign />
+          {questionList && <DrawQuestion questionList={questionList} />}
+          {/* <FormToDesign /> */}
         </div >
       </div>
     </div>

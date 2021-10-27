@@ -30,15 +30,18 @@ function FormToDesign(props) {
   const [prop, setProp] = useState(false)
   const [nameOfForm, setNameOfForm] = useState('');
 
-  const form = useSelector(state => state.formReducer)
-  const emails = useSelector(state => state.formReducer.emails)
-  const answers = useSelector(state => { ; return state.formReducer.answers })
+  const form = useSelector(state => state.form.form)
+  const emails = useSelector(state => state.form.emails)
+  const answers = useSelector(state => { ; return state.form.answers })
+  const user = useSelector(state => state.user.user )
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (props.hasProp) {
       setQuestionList(form.form.questionList);
       setProp(true);
       console.log("fff:", form.form.questionList);
+      
     }
   }, []);
   useEffect(() => {
@@ -105,10 +108,11 @@ function FormToDesign(props) {
     dispatch(saveQuestion(quest));
     console.log(quest);
     setQuestionList([...questionList, quest])
+    debugger
     let myForm = {
       name: nameOfForm,
       date: new Date(),
-      managerId: JSON.parse(sessionStorage.getItem('User')).user._id,
+      managerId: user._id,
       emails: emails,
       questionList: [...questionList, quest]
     }
@@ -120,7 +124,7 @@ function FormToDesign(props) {
 
   return (<div className="paper">
     <div>design <br />
-
+{/* 
       <Button className={buttonStyle.root} variant="contained" onClick={save} >save</Button>
       <Dialog
         open={openAlert}
@@ -227,8 +231,8 @@ function FormToDesign(props) {
         {(kind == 20) && <Region />}
         {(kind == 40 || kind == 30) && <CheckboxLabels />}
 
-      </div >
-      {prop && <DrawQuestion questionList={form.questionList} /> }
+      </div > */}
+      <DrawQuestion questionList={form.questionList} /> 
 
     </div>
   </div>)

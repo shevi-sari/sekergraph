@@ -1,22 +1,12 @@
 
-	body{
-        background:#2a2c2b;;
-    }
     .button{
     position :absolute;
     color: rgb(167, 4, 31) important! ;
     align-items: center;
     }
-    #form{
-        position: relative;
+    .form1{
         top: 25rem;
-        /* display: flex; */
-        align-items: center;
-        width: 100%;
-        left:50rem;
-        justify-self: center;
-        /* width: 200px;
-        height: 100px; */
+      
     }
     #Group_176 {
 		position: absolute;

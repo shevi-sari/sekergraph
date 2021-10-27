@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+.logo{
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+}
 div{
   text-align: center;
   color:white;

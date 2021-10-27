@@ -5,8 +5,11 @@ import { useSelector } from 'react-redux';
 
 function Results() {
   const form = useSelector(state => state.form);
+
+  
   return (<div>
-    result!
+        results
+
   </div>)
 }
 export default Results;

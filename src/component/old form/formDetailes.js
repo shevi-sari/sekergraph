@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import { Button, TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import DateAndTimePickers from './sendIn';
 import EmailList from './emailList';
-import { useDispatch, useSelector } from 'react-redux';
-
+import {  useSelector } from 'react-redux';
+import Menu from '../enter/menu'
 
 
 
@@ -12,15 +12,15 @@ function FormDetailes() {
     const [showTiming, setShowTiming] = useState(true);
     const [showEmailList, setShowEmailList] = useState(true);
     const history = useHistory();
-    const form = useSelector(state => state.formReducer.form);
+    const form = useSelector(state => state.form.form);
     const newForm = () => {
         history.push('/formToDesign');
-        window.location.reload();
+       // window.location.reload();
     }
     const results = () => {
         console.log("form:::::::::", form);
         history.push('/results');
-        window.location.reload();
+     //   window.location.reload();
     }
 
     const sendBy = () => {
@@ -31,6 +31,7 @@ function FormDetailes() {
         setShowEmailList(!showEmailList)
     }
     return <div>
+        <Menu/>
         <Button variant="contained" color="secondary" onClick={newForm}>re-edit </Button>
         <Button variant="contained" color="secondary" onClick={sendBy}>send</Button>
         <Button variant="contained" color="secondary" onClick={showEmails}>emailes</Button>

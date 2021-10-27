@@ -10,14 +10,16 @@ import { saveForm } from '../../../redux/actions/formAction';
 function DrawQuestion(props) {
 
     const [theQuestion, setTheQuestion] = useState();
-        const [i,setI]=useState(0)
+    const [i, setI] = useState(0)
 
-    const form = useSelector(state => state.formReducer.form);
+    const form = useSelector(state => state.form.form);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        
-        if (form.questionList) {
+        console.log('props',props);
+        console.log('form',form);
+        if (form && form.questionList) {
+
             form.questionList.map((q) => {
                 if (q.theQuestion === props.questionList[0].theQuestion)
                     form.questionList.theQuestion = theQuestion;

@@ -6,21 +6,25 @@ import { getEmailByManeger, removeEmail } from '../api/formApi';
 import Fab from '@material-ui/core/Fab';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveEmails } from '../../redux/actions/formAction'
-
-function FullListEmail(props) {
+import AddIcon from '@material-ui/icons/Add';
+import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
+import TextField from '@material-ui/core/TextField';
+import { textFeild } from '../../style';
+function FullListEmail() {
 
     const useStyles = makeStyles((theme) => ({
         root: {
             color: theme.palette.text.primary,
         },
     }));
+    
     const classes = useStyles();
     const [emails, SetEmails] = useState([]);
     const [showInput, setShowInput] = useState(false);
     const [emailToRemove, SetEmailToRemove] = useState('');
 
     
-    const user = useSelector(state => state.userReducer);
+    const user = useSelector(state => state.user.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,12 +34,11 @@ function FullListEmail(props) {
     }, [emailToRemove]);
 
     useEffect(async () => {
-        SetEmails(user.emails
-            );
+        SetEmails(user.emails );
         dispatch(saveEmails(user.emails));
         printList();
     }, []);
-
+    const classes1 = textFeild();
     const add = () => {
         setShowInput(!showInput);
     }
@@ -74,8 +77,8 @@ function FullListEmail(props) {
 
     return <div >
         {printList()}
-        <button onClick={add}>+</button>
-        {showInput && <input onBlur={(e) => blur(e.target.value)} />}
+        <AddIcon onClick={add}></AddIcon>
+        {showInput && <TextField onBlur={(e) => blur(e.target.value)} className={classes1.TextField}/>}
     </div>
 }
 export default FullListEmail;

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import DrawQuestionToFill from './drawQuestionToFill'
 import { saveForm } from '../../redux/actions/formAction';
 import { useDispatch } from 'react-redux';
-
+import './formToFill.css'
 
 function FormToFill(props) {
   const [form, setForm] = useState([])
@@ -23,11 +23,11 @@ function FormToFill(props) {
 
   }, []);
   //const form = useSelector(state => state.form);
-  return (<div>
-    results {props.formId}
+  return (<div className="questions">
+    
     <img src="../_b1.png" className='img' no-repeat="true" />
 
-    {form && <div className="">{form.name}
+    {form && <div >{form.name}
     <DrawQuestionToFill questionList={form.questionList} /></div>}
     
   </div>)

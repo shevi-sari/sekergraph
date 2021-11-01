@@ -6,16 +6,37 @@ import RegionToFill from './regionToFill'
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveForm } from '../../redux/actions/formAction';
+import './drawQuestionToFill.css'
+
+import {saveAnswer} from '../../redux/actions/surveyedAction'
+
+ 
+
+  
 
 
 function DrawQuestionToFill(props) {
-
-    const [theAnswer, setTheAnswer] = useState();
+    const [value, setValue] = React.useState('');
+    // const [theAnswer, setTheAnswer] = useState();
     
 
     const form = useSelector(state => state.form.form);
     const dispatch = useDispatch();
 
+    
+
+  const answersList= useSelector(state => state.surveyed.answerList);
+
+
+  useEffect(()=>{
+    answersList[props.index]=value;
+    dispatch(saveAnswer([...answersList]));
+  },[value])
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    
+    
+  };
     // useEffect(() => {
     //     console.log('props',props);
     //     console.log('form',form);
@@ -37,26 +58,27 @@ console.log('redux',form);
     <div>
       { form && form.questionList.map((q,i) => {
             return (
-                <div  >
-                    <span> {i+1}</span>
+                <div className="answer" >
+                    <span>שאלה {i+1}</span>
                     
-                    {q.questionKind === 20 && <div>
-                        <span>{q.theQuestion}</span>
+                    {q.questionKind === 10 && <div>
+                        <div >{q.theQuestion}</div>
+                        
                     <TextField id="standard-basic"
-                        onBlur={(e) => { setTheAnswer(e.target.value) }}
+                        onBlur={handleChange}
                         InputProps={{ style: { color: "white", } }}
                         InputLabelProps={{ style: { color: "white", } }}
                         className={textFeild.root}
                     // defaultValue={q.theQuestion}
                     /></div>}
+  
+                    {q.questionKind === 20 &&
+                        <RegionToFill question={q} index={i} />}
 
                     {q.questionKind === 20 &&
-                        <RegionToFill question={q}  />}
-
+                        <OneAnswerToFill question={q} index={i}/>}
                     {q.questionKind === 20 &&
-                        <OneAnswerToFill hasProp={true} q={q} />}
-                    {q.questionKind === 20 &&
-                        <MultySelectToFill hasProp={true} q={q} />}
+                        <MultySelectToFill question={q} index={i} />}
                 </div>
             
         )}
@@ -64,3 +86,4 @@ console.log('redux',form);
 
                 }
 export default DrawQuestionToFill;
+

@@ -27,7 +27,7 @@ function Home() {
     const newForm = () => {
 
         history.push('/newForm');
-      //  window.location.reload();
+       
     }
 
 

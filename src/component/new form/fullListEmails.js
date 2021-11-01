@@ -36,7 +36,7 @@ function FullListEmail() {
     useEffect(async () => {
         SetEmails(user.emails );
         dispatch(saveEmails(user.emails));
-        printList();
+        
     }, []);
     const classes1 = textFeild();
     const add = () => {
@@ -55,8 +55,11 @@ function FullListEmail() {
             dispatch(saveEmails(emails));
         }
     }
-    const printList = () => {
-        return emails.map((email) => <div><br />
+  
+
+    return <div >
+        
+        {emails && emails.map((email) => {return(<div><br />
             <Grid container className={classes.root}
             >
                 <Grid item xs={8}>{email} <Fab size="small" color="secondary" aria-label="add" className={classes.margin}
@@ -72,11 +75,8 @@ function FullListEmail() {
                 </Fab>
                 </Grid>
             </Grid>
-        </div>)
-    }
-
-    return <div >
-        {printList()}
+        </div>
+         ) } )}
         <AddIcon onClick={add}></AddIcon>
         {showInput && <TextField onBlur={(e) => blur(e.target.value)} className={classes1.TextField}/>}
     </div>

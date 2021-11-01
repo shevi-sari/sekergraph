@@ -1,0 +1,15 @@
+.answer{
+    border-style: solid;
+    border-color: rgb(107 108 108);
+    text-align: right;
+    min-height: 5rem;
+    min-width: 17rem;
+    margin: 0.5rem;
+    color: rgb(224 108 121);
+    overflow: auto;
+    text-align: right;
+    align-items: center;
+}
+.openQuestion{
+    margin: 2rem;
+}

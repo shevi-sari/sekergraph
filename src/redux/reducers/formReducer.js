@@ -1,8 +1,8 @@
 const INITIAL_STATE = {
-    //form: '',
-    answers: '',
-    question: '',
-    emails: ''
+    // //form: '',
+    // answers: '',
+    // question: '',
+    // emails: ''
 }
 
 export const formReducer = (state = INITIAL_STATE, action) => {

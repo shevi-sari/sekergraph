@@ -68,7 +68,7 @@ export const removeEmail = async (email, form) => {
 
 export const sendForm = async () => {
     try {
-        alert('its work!!')
+        
         console.log('its work');
         var form = JSON.parse(sessionStorage.getItem('newForm'));
 

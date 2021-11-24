@@ -30,6 +30,8 @@ function NewForm(props) {
   const [questionList, setQuestionList] = useState([])
   // const [formName, setFormName] = useState('')
   const [nameOfForm, setNameOfForm] = useState('');
+  const [hasEmpty, setHasEmpty] = useState(true);
+
 
   const form = useSelector(state => state.form.form)
   const emails = useSelector(state => state.form.emails)
@@ -43,8 +45,15 @@ function NewForm(props) {
   }, [sendEmail]);
 
   useEffect(() => {
+    setKind('');
+    setTheQuestion('');
   }, [questionList]);
-
+  useEffect(() => {
+    if (theQuestion == '' || kind == '')
+      setHasEmpty(true)
+    else
+      setHasEmpty(false)
+  }, [theQuestion, kind]);
 
   const emailList = () => {
     setShowEmailList(!showEmailList)
@@ -117,6 +126,7 @@ function NewForm(props) {
       questionKind: kind,
       answers: answers
     }
+
     dispatch(saveQuestion(quest));
     console.log(quest);
     setQuestionList([...questionList, quest])
@@ -129,45 +139,44 @@ function NewForm(props) {
     }
     dispatch(saveForm(myForm))
     //setDraw(false);
-    setKind(0);
-    console.log("ans2:", answers);
+    setKind('');
+    setTheQuestion('');
+    console.log("ans2:", kind);
   }
-
   return (<div >
-
     <div className="paper">
       <div className="buttonDiv">
-<div >
-        <Button className={classes.button} variant="contained" onClick={save} ><SaveAltIcon style={{padding:"0.25rem"}}/>save</Button>
-        <Dialog
-          open={openAlert}
-          onClose={closeOpenAlert}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Do you want to send this form now?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={closeOpenAlert} color="primary">
-              NO
-            </Button>
-            <Button onClick={yes} color="primary" autoFocus>
-              YES
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <div >
+          <Button className={classes.button} variant="contained" onClick={save} ><SaveAltIcon style={{ padding: "0.25rem" }} />save</Button>
+          <Dialog
+            open={openAlert}
+            onClose={closeOpenAlert}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Do you want to send this form now?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={closeOpenAlert} color="primary">
+                SCHEDULE
+              </Button>
+              <Button onClick={yes} color="primary" autoFocus>
+                YES
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
-        <div ><Button className={classes.button} variant="contained" onClick={emailList} ><AlternateEmailIcon style={{padding:"0.25rem"}}/>     email to send</Button></div>
-        <div style={{ display: showEmailList ? 'none' : 'inline' ,margin:"0.5rem",top:'200rem'}}> <FullListEmail /></div>
-    {/* {  showEmailList && <FullListEmail/> } */}
-        </div>
-      
+        <div ><Button className={classes.button} variant="contained" onClick={emailList} ><AlternateEmailIcon style={{ padding: "0.25rem" }} />     email to send</Button></div>
+        <div style={{ display: showEmailList ? 'none' : 'inline', margin: "0.5rem", top: '200rem' }}> <FullListEmail /></div>
+        {/* {  showEmailList && <FullListEmail/> } */}
+      </div>
+
       <div className="questionList">
-     <Menu/>
+        <Menu />
         <div className="questionListIn">
           <TextField id="standard-basic"
             onBlur={(e) => { setNameOfForm(e.target.value) }}
@@ -176,22 +185,24 @@ function NewForm(props) {
             className={textFeildStyle.root}
             label="name of the form"
           />
-  
-          <Fab
-            onClick={addFormToRedux}
-            variant="extended"
-            size="medium"
-            color="secondary"
-            aria-label="add"
-            // className={classes.margin}
-            className={buttonStyle.root}
-          >
-            <AddIcon className={classes.extendedIcon} />
-            add a question
-          </Fab>
-       
+
+
           <div>
             <div className={"question"}>
+              <Fab
+                disabled={hasEmpty}
+                onClick={addFormToRedux}
+                variant="extended"
+                size="medium"
+                color="secondary"
+                aria-label="add"
+                // className={classes.margin}
+                className={buttonStyle.root}
+              >
+                <AddIcon className={classes.extendedIcon} />
+                add a question
+              </Fab>
+
               <FormControl className={classes.formControl}>
                 <InputLabel className={textFeildStyle.root} id="demo-controlled-open-select-label"
                   style={{ color: "white" }}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { textFeild } from '../../../style';
 import CheckboxLabels from '../question/multiSelect';
-import Region from '../question/region';
+import Region from './region';
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveForm } from '../../../redux/actions/formAction';

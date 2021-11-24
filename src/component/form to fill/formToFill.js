@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import DrawQuestionToFill from './drawQuestionToFill'
 import { saveForm } from '../../redux/actions/formAction';
 import { useDispatch } from 'react-redux';
-import './formToFill.css'
+// import './formToFill.css'
 import { Button } from '@material-ui/core';
 import { sendAnswerList } from '../api/surveyedApi';
 

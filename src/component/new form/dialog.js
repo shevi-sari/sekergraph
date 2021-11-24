@@ -39,7 +39,7 @@ export default function AlertDialog() {
             yes
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            no
+            schdule
           </Button>
         </DialogActions>
       </Dialog>

@@ -7,6 +7,7 @@
     width: 15rem;
     margin:0.5rem;
     color: rgb(224 108 121);
+    cursor: pointer;
 }
 .test{
     margin: 0.25rem;

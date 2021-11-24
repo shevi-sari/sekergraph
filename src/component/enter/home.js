@@ -5,11 +5,15 @@ import { Button, TextField } from '@material-ui/core';
 import './home.css'
 import { button } from '../../style';
 import { useDispatch, useSelector } from 'react-redux';
-import { initialState } from '../../redux/actions/formAction';
+import { saveForm } from '../../redux/actions/formAction';
+//import { initialForm } from '../../redux/actions/formAction';
 
 function Home() {
 
    // const [list, setList] = useState('');
+   const dispatch = useDispatch();
+   const form = useSelector(state => state.form.form)
+
     const list = useSelector(state => state.user.user);
     // setList( useSelector(state => state.user.user))
     useEffect(() => {
@@ -25,7 +29,8 @@ function Home() {
     const buttonStyle = button();
 
     const newForm = () => {
-
+//לאפס טופס
+        dispatch(saveForm(null));
         history.push('/newForm');
        
     }

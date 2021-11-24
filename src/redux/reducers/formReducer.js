@@ -29,7 +29,8 @@ export const formReducer = (state = INITIAL_STATE, action) => {
             }
         case 'RESET_REDUCER_GROUP':
             return { ...INITIAL_STATE };
-
+        // case 'RESET_REDUCER_FORM':
+        //     return { ...INITIAL_FORM };
         default:
             return state;
     }

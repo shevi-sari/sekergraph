@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
 import { textFeild } from '../../style';
-import { signupApi } from '../api/signupApi'
+import { signupApi } from '../api/signupApi';
+import { loginApi } from '../api/loginApi.js';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/userActions';
+
 import './signup.css'
 
 
@@ -20,10 +24,19 @@ function Signup() {
     const [hasError, setHasError] = useState(true);
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const signup = () => {
-        signupApi ({ email, password, name }).then(() => {
-            history.push('/');
+        signupApi ({ email, password, name }).then(() => {loginApi(email, password)
+            .then((data) => {
+                console.log('data.user', data);
+
+                dispatch(login(data));
+
+            }).then(() => {
+                history.push('/home');
+                // window.location.reload();
+            }).catch((error) => console.log("error from reload:", error))
            // window.location.reload();
         }).catch   ( (error)=>console.log("error##########", error))
         }

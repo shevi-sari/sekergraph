@@ -38,3 +38,11 @@ export const initialState = () => {
         })
     }
 } 
+export const initialForm = () => {
+    return function (dispatch) {
+        dispatch({
+            type: 'RESET_REDUCER_FORM',
+            payload: null
+        })
+    }
+} 

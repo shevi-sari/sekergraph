@@ -20,5 +20,5 @@ export const loginApi = (email, password) => {
                 console.log("Status Code is:" + response.status);
             }
         })
-}
+    }
 

@@ -1,4 +1,4 @@
-.form{
+.questionInList{
 /*    
 
    
@@ -6,12 +6,12 @@
     width: 15rem;
     margin:0.5rem;
     color: rgb(224 108 121); */
-    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
-   
+    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);  border: solid;
+   border-color: black;
     overflow: auto;
     /* box-shadow:1rem, rgb(27, 9, 9); */
-    min-height:8rem;
-    width: 30rem;
+    min-height:4rem;
+    width: 15rem;
     margin:0.5rem;
     color: rgb(224 108 121);
 }

@@ -27,20 +27,22 @@ function Signup() {
     const dispatch = useDispatch();
 
     const signup = () => {
-        signupApi ({ email, password, name }).then(() => {loginApi(email, password)
-            .then((data) => {
-                console.log('data.user', data);
+        signupApi({ email, password, name }).then(() => {
+            loginApi(email, password)
+                .then((data) => {
+                    console.log('data.user', data);
 
-                dispatch(login(data));
+                    dispatch(login(data));
 
-            }).then(() => {
-                history.push('/home');
-                // window.location.reload();
-            }).catch((error) => console.log("error from reload:", error))
-           // window.location.reload();
-        }).catch   ( (error)=>console.log("error##########", error))
-        }
-    
+                }).then(() => {
+                    history.push('/home');
+                    history.goBack();
+                    // window.location.reload();
+                }).catch((error) => console.log("error from reload:", error))
+            // window.location.reload();
+        }).catch((error) => console.log("error##########", error))
+    }
+
 
     useEffect(() => {
         if (email !== "" && name !== "" && password !== "" && !flagPassword & !flagEmail)
@@ -54,26 +56,26 @@ function Signup() {
         let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return (!regEmail.test(email))
     }
-  
+
     const classes = textFeild();
     return (
         <div>
-             <form id="form" className={classes.root} noValidate autoComplete="off">
+            <form className={classes.root} noValidate autoComplete="off">
 
-                <div  viewBox="0 0 460.192 1">
+                <div viewBox="0 0 460.192 1">
                     <TextField id="Line_1" d="M 460.1918029785156 0 L 0 0"
-                    size={'small'}
-                     className={classes.root}
-                    InputProps={{
-                        style: {
-                            color: "white",
-                        }
-                    }}
-                    InputLabelProps={{
-                        style: {
-                            color: "white",
-                        }
-                    }}
+                        size={'small'}
+                        className={classes.root}
+                        InputProps={{
+                            style: {
+                                color: "white",
+                            }
+                        }}
+                        InputLabelProps={{
+                            style: {
+                                color: "white",
+                            }
+                        }}
                         onChange={(e) => {
                             setEmail(e.target.value);
                             setFlagEmail(false);
@@ -94,18 +96,18 @@ function Signup() {
                 </div>
                 <div>
                     <TextField
-                    size={'big'}
-                     className={classes.root}
-                    InputProps={{
-                        style: {
-                            color: "white",
-                        }
-                    }}
-                    InputLabelProps={{
-                        style: {
-                            color: "white",
-                        }
-                    }}
+                        size={'big'}
+                        className={classes.root}
+                        InputProps={{
+                            style: {
+                                color: "white",
+                            }
+                        }}
+                        InputLabelProps={{
+                            style: {
+                                color: "white",
+                            }
+                        }}
                         error={flagPassword}
                         id="standard-error-helper-text"
                         label="enter your password*"
@@ -128,23 +130,23 @@ function Signup() {
 
                 <div>
                     <TextField
-                     className={classes.root}
-                    InputProps={{
-                        style: {
-                            color: "white",
-                        }
-                    }}
-                    InputLabelProps={{
-                        style: {
-                            color: "white",
-                        }
-                    }}
+                        className={classes.root}
+                        InputProps={{
+                            style: {
+                                color: "white",
+                            }
+                        }}
+                        InputLabelProps={{
+                            style: {
+                                color: "white",
+                            }
+                        }}
                         error={flagName}
                         id="standard-error-helper-text"
                         label="enter your name*"
                         onChange={(e) => {
                             setName(e.target.value);
-                            if (name !== "") {
+                            if (e.target.value !== "") {
                                 setNameMass("");
                                 setFlagName(false);
                             }

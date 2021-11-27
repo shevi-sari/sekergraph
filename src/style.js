@@ -36,8 +36,8 @@ export const button = makeStyles((theme) => ({
         color: 'white',
         'border-radius': '1.5625rem',
         'font-size': '1rem',
-         padding: '0.5rem 5.25rem',
-        margin: '2rem'
+         padding: '0.5rem 4rem',
+        margin: '0.5rem'
     }
     // root: {
     //     '& label.Mui-focused': {

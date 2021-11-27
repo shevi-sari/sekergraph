@@ -6,13 +6,13 @@ import HomeIcon from '@material-ui/icons/Home';
 
 
 function Menu() {
-    const history = useHistory();
+  const history = useHistory();
   return (<div>
-    
-      <Tooltip title="go to home" >
-       <IconButton tooltip="home page" style={{ cursor: 'default' ,float: 'right',}}>
-          <HomeIcon edge={'end'} style={{color: 'white', cursor: 'default' }} onClick={() => { history.push('/home') }} />
-        </IconButton></Tooltip>
+
+    <Tooltip title="go to home" >
+      <IconButton tooltip="home page" style={{ cursor: 'default', float: 'right', }}>
+        <HomeIcon edge={'end'} style={{ color: 'white', cursor: 'default' }} onClick={() => { history.push('/home') }} />
+      </IconButton></Tooltip>
   </div>)
 }
 export default Menu;

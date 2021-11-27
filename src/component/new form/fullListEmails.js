@@ -27,13 +27,19 @@ function FullListEmail() {
     const user = useSelector(state => state.user.user);
     const dispatch = useDispatch();
 
+    useEffect( () => {
+        SetEmails(user.emails );
+        dispatch(saveEmails(user.emails));
+        
+    }, []);
     useEffect(() => {
         let num = (emails.indexOf(emailToRemove))
-        emails.splice(num, 1);
-        dispatch(saveEmails(emails));
+      // emails.splice(num, 1);
+    //    SetEmails(e)
+        dispatch(saveEmails(emails.splice(num, 1)));
     }, [emailToRemove]);
 
-    useEffect(async () => {
+    useEffect( () => {
         SetEmails(user.emails );
         dispatch(saveEmails(user.emails));
         

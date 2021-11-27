@@ -5,7 +5,7 @@ import Region from './region';
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveForm } from '../../../redux/actions/formAction';
-
+import './drawQuestion.css'
 
 function DrawQuestion(props) {
 
@@ -30,7 +30,7 @@ function DrawQuestion(props) {
 
     return props.questionList.map((q) => {
         return (
-            <div className="form" >
+            <div className="questionInList" >
                 {q.questionKind === 10 && <TextField id="standard-basic"
                     onBlur={(e) => { setTheQuestion(e.target.value) }}
                     InputProps={{ style: { color: "white", } }}

@@ -11,16 +11,16 @@ function FormList(props) {
 
     const history = useHistory();
 
-    
-    const formDetailes =  (f) => {
-         dispatch(saveForm(f));
+
+    const formDetailes = (f) => {
+        dispatch(saveForm(f));
         console.log('f^^^^^^^^^:', f._id);
-        
-      //  console.log("form:::::::::", form);
+
+        //  console.log("form:::::::::", form);
         history.push('/formDetailes');
-       // window.location.reload();
+        // window.location.reload();
     }
-    
+
     return props.list.forms.map((f) => {
         return (<div className="">
             <div className="form" onClick={() => formDetailes(f)} >

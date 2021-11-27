@@ -5,7 +5,7 @@ import FullListEmail from './fullListEmails';
 import { textFeild, button } from '../../style'
 import CheckboxLabels from './question/multiSelect';
 import AddIcon from '@material-ui/icons/Add';
-import Region from './question/region';
+import Region from './question/Region';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -20,6 +20,8 @@ import Menu from '../enter/menu'
 import { useHistory } from "react-router-dom";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import { ScheduleApi } from './../api/formApi';
+
 function NewForm(props) {
   const [showEmailList, setShowEmailList] = useState(true);
   const [openQuestion, setOpenQuestion] = useState(false);
@@ -31,6 +33,9 @@ function NewForm(props) {
   // const [formName, setFormName] = useState('')
   const [nameOfForm, setNameOfForm] = useState('');
   const [hasEmpty, setHasEmpty] = useState(true);
+  const [time, setTime] = useState('');
+  const [newDate, setNewDate] = useState(new Date());
+  const [showTiming, setShowTiming] = useState(true);
 
 
   const form = useSelector(state => state.form.form)
@@ -117,6 +122,13 @@ function NewForm(props) {
     closeOpenAlert();
     sending();
   }
+  const timing = () => {
+    closeOpenAlert();
+    setShowTiming(false)
+  }
+  const after = () => {
+    ScheduleApi(time);
+  }
   const addFormToRedux = () => {
     debugger
     console.log("ans:", answers);
@@ -141,8 +153,10 @@ function NewForm(props) {
     //setDraw(false);
     setKind('');
     setTheQuestion('');
+    document.getElementById("cleen").value = "";
     console.log("ans2:", kind);
   }
+
   return (<div >
     <div className="paper">
       <div className="buttonDiv">
@@ -160,8 +174,8 @@ function NewForm(props) {
                 Do you want to send this form now?
               </DialogContentText>
             </DialogContent>
-            <DialogActions>
-              <Button onClick={closeOpenAlert} color="primary">
+            <DialogActions>e
+              <Button onClick={timing} color="primary">
                 SCHEDULE
               </Button>
               <Button onClick={yes} color="primary" autoFocus>
@@ -203,6 +217,25 @@ function NewForm(props) {
                 add a question
               </Fab>
 
+
+              <div style={{ display: showTiming ? 'none' : 'block' }}>
+                <form className={classes.container} noValidate>
+                  <TextField
+                    id="datetime-local"
+                    label="set date and time"
+                    type="datetime-local"
+                    defaultValue={newDate}
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    onBlur={(e) => { setTime(e.target.value) }}
+
+                  />
+
+                </form>
+                <Button variant="contained" color="secondary" onClick={after}>send</Button>
+              </div>
               <FormControl className={classes.formControl}>
                 <InputLabel className={textFeildStyle.root} id="demo-controlled-open-select-label"
                   style={{ color: "white" }}>
@@ -223,13 +256,13 @@ function NewForm(props) {
                   <MenuItem value={40}>multy selected</MenuItem>
                 </Select>
               </FormControl>
-
-              <TextField id="standard-basic"
+             
+              <TextField id="standard-basic" id="cleen"
                 InputProps={{ style: { color: "white", } }}
                 InputLabelProps={{ style: { color: "white" } }}
                 className={textFeildStyle.root}
                 label="enter a question"
-                onBlur={(e) => { setTheQuestion(e.target.value) }}
+                onMouseMove={(e) => { setTheQuestion(e.target.value) }}
               />
               {(kind == 20) && <Region />}
               {(kind == 40 || kind == 30) && <CheckboxLabels />}

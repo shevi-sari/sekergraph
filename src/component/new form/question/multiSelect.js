@@ -36,18 +36,18 @@ function CheckboxLabels(props) {
 
     const [hasProps, setHasProps] = useState(false);
     useEffect(() => {
-        
-      
+
+
         let answerTemp = answersArray
         answerTemp[answerIndex] = answer
         setAnswersArray([...answerTemp])
         dispatch(saveAnswersList(answerTemp));
-        
+
     }, [answer]);
-    useEffect(() => {   
+    useEffect(() => {
         if (props.hasProp)
             setAnswersArray([...props.q.answers]);
-           
+
 
     }, []);
     useEffect(() => {
@@ -56,7 +56,7 @@ function CheckboxLabels(props) {
         dispatch(saveAnswersList(answersArray));
         setTmp(!tmp);
     }, [ansToRemove]);
- 
+
     const buttonStyle = button();
     const GreenCheckbox = withStyles({
         root: {
@@ -72,14 +72,18 @@ function CheckboxLabels(props) {
     };
     const classes = textFeild();
 
+
     const addAns = () => {
-        console.log("props.hasProp:::::::", props.hasProp);
-        setAnswersArray([...answersArray, tmpAns]);
-        setTmpAns("");
-        dispatch(saveAnswersList([...answersArray, tmpAns]));
+        if (tmpAns != '') {
+            console.log("props.hasProp:::::::", props.hasProp);
+            setAnswersArray([...answersArray, tmpAns]);
+            setTmpAns("");
+            dispatch(saveAnswersList([...answersArray, tmpAns]));
+        }
         // setHasProps(true);
 
     }
+
 
 
     return (<div className={classes.root}>
@@ -87,9 +91,9 @@ function CheckboxLabels(props) {
             <FormGroup row>
                 {props.hasProp && <label>{props.q.theQuestion}</label>}
                 <div className="answerOnMulty">
-                    {answersArray.map((answer,i) => <div>
+                    {answersArray.map((answer, i) => <div>
 
-                        <Grid container className={classes.root} >   <span>{ i+1}.</span>
+                        <Grid container className={classes.root} >   <span>{i + 1}.</span>
                             <FormControlLabel
                                 control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
                             />

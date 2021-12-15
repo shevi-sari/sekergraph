@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core'
-//import Icon from '@material-ui/core/Icon';
+import { Button } from '@material-ui/core';
+import { ScheduleApi, sendForm } from './../api/formApi';
+import { useSelector } from 'react-redux';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import './sendIn.css'
 
 function DateAndTimePickers() {
-  const [showTiming, setShowTiming] = useState(true);
+  const [showTiming, setShowTiming] = useState(false);
+  const [newDate, setNewDate] = useState(new Date());
+  const [time, setTime] = useState('');
+  const form = useSelector(state => state.form.form);
 
   const now = () => {
-
+    {setShowTiming(false)}
+    sendForm(form)
   }
   const after = () => {
-
+    {setShowTiming(false)}
+    ScheduleApi(time,form);
   }
   const timing = () => {
-    setShowTiming(false)
+    setShowTiming(true)
   }
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -31,32 +39,30 @@ function DateAndTimePickers() {
         margin: theme.spacing(2),
       },
     }
-  
+
   }));
- 
+
   const classes = useStyles();
 
   return (<div>
+        <ButtonGroup disableElevation variant="contained">
+
     <Button variant="contained" color="secondary" onClick={now}>now</Button>
-    <Button variant="contained" color="secondary" onClick={timing}>timing</Button>
-
-    <div style={{ display: showTiming ? 'none' : 'block' }}>
-        {/* DIV אפשרות הסרת ה 
-    <div onClick={setShowTiming(true)}>x</div>
-    <span class="material-icons ">
-      clear
-    </span> */}
-
+    <Button variant="contained" color="secondary" onClick={timing}>schedule</Button>
+</ButtonGroup>
+    <div className={'schedule'}  style={{ display: showTiming ? 'block' : 'none' }}>
+    
       <form className={classes.container} noValidate>
         <TextField
           id="datetime-local"
           label="set date and time"
           type="datetime-local"
-          defaultValue="2017-05-24T10:30"
+          defaultValue={newDate}
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
+          onBlur={(e) => { setTime(e.target.value) }}
         />
       </form>
       <Button variant="contained" color="secondary" onClick={after}>send</Button>
@@ -65,3 +71,4 @@ function DateAndTimePickers() {
   );
 }
 export default DateAndTimePickers;
+

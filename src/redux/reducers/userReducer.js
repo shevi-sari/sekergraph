@@ -13,8 +13,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state, user: action.payload
             }
-        case 'RESET_REDUCER_GROUP':
-            return { ...INITIAL_STATE };
+        // case 'RESET_REDUCER_GROUP':
+        //     return { ...INITIAL_STATE };
         case 'MENU':
            
            

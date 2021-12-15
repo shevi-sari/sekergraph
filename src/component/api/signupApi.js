@@ -11,7 +11,7 @@ export const signupApi = (user) => {
             if (response.ok) {
                 response.json()
                     .then(() => {
-                        alert("hello" + " " + user.name);
+                        alert("hello "  + user.name);
                     })
             } else {
                 response.json()
@@ -33,7 +33,7 @@ export const signupApi1 = (user) => {
             if (response.ok) {
                 response.json()
                     .then(() => {
-                        alert("hello" + " " + user.name);
+                        alert("hello "  + user.name);
                     })
             } else {
                 response.json()

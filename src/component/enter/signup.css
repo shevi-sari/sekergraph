@@ -5,6 +5,19 @@
     color: rgb(167, 4, 31) important! ;
     align-items: center;
     }
+	.form1{
+        top: 25rem;
+		padding-top: 100px;
+		
+		display: flex;
+		flex-direction: column;
+		align-content: space-around;
+		align-items: center;
+	
+    }
+	.label{
+		margin-top:5rem
+	}
     #form{
         position: relative;
         top: 25rem;

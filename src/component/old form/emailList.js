@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
-import { getEmailByForm, addEmail, removeEmail } from '../api/formApi'
+import {  addEmail, removeEmail } from '../api/formApi'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,17 +33,19 @@ function EmailList() {
     // }, [emailToRemove]);
 
     useEffect(() => {
-       if( emailToRemove)
+       if( emailToRemove )
        { removeEmail(emailToRemove, form).then(res => {
             SetEmails(res);
             form.emails=res
-            user.forms.map((f) => {if(f = form.formId)  f.emails=res })
+            user.forms.map((f) => {
+                if(f = form.formId) 
+                 f.emails=res })
             dispatch(saveForm(form))
             dispatch(login(user))
         });}
     }, [emailToRemove]);
 
-    useEffect(async () => {
+    useEffect( () => {
         console.log("formooooooooooofl:", formEmails);
         SetEmails(formEmails)
         console.log("formoooooooooooflgggggjjjj:", emails);
@@ -56,7 +58,9 @@ function EmailList() {
     const blur = (e) => {
         addEmail(e, form).then(res => {
             form.emails.push(e)
-            user.forms.map((f) => {if(f = form.formId)  f.emails.push(e) })
+            user.forms.map((f) => {
+                if(f = form.formId) 
+                 f.emails.push(e) })
             dispatch(saveForm(form))
             dispatch(login(user))
             SetEmails(res);
@@ -67,7 +71,7 @@ function EmailList() {
 
     const printList = () => {
         return emails?.map((email) =>
-            <div> <Grid container className={classes.root} >
+            <div > <Grid container className={classes.root} >
                 <Grid item xs={8}>{email} <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
                     <DeleteIcon
                         onClick={() => {

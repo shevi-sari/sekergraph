@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
 import Tooltip from '@material-ui/core/Tooltip';
@@ -7,6 +7,13 @@ import HomeIcon from '@material-ui/icons/Home';
 
 function Menu() {
   const history = useHistory();
+  useEffect(() => {
+    // setList(forms)
+    //   console.log(list);
+// debugger
+    console.log('*******************');
+    //dispatch(initialState())
+}, []);
   return (<div>
 
     <Tooltip title="go to home" >

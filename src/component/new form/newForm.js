@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField, Fab, Select, MenuItem, InputLabel, makeStyles, FormControl, IconButton } from '@material-ui/core';
+import { Button, TextField, Fab, Select, MenuItem, InputLabel, makeStyles, FormControl } from '@material-ui/core';
 import FullListEmail from './fullListEmails';
 // import FormToDesign from './formToDesign';
 import { textFeild, button } from '../../style'
 import CheckboxLabels from './question/multiSelect';
 import AddIcon from '@material-ui/icons/Add';
-import Region from './question/Region';
+import Region from './question/region';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { sendForm, toSaveForm } from '../api/formApi'
 import './newForm.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveQuestion, saveForm } from '../../redux/actions/formAction'
+import { saveQuestion, saveForm ,initialState} from '../../redux/actions/formAction'
 import DrawQuestion from './question/drawQuestion';
 import Menu from '../enter/menu'
 import { useHistory } from "react-router-dom";
@@ -45,6 +45,10 @@ function NewForm(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
+    dispatch(initialState());
+  }, []);
+ 
+  useEffect(() => {
     if (sendEmail)
       sendForm(form)
   }, [sendEmail]);
@@ -54,7 +58,7 @@ function NewForm(props) {
     setTheQuestion('');
   }, [questionList]);
   useEffect(() => {
-    if (theQuestion == '' || kind == '')
+    if (theQuestion === '' || kind === '')
       setHasEmpty(true)
     else
       setHasEmpty(false)
@@ -76,25 +80,35 @@ function NewForm(props) {
     },
     button: {
       background: '#e06c79',
-      color: 'white',
+      // color: 'white',
       'border-top-left-radius': '1.5625rem',
       'border-bottom-left-radius': '1.5625rem',
-      'font-size': '1rem',
-      padding: '0.5rem 2rem',
-      'margin-top': '2rem',
-      top: '8rem'
+      width: '12rem',
+      height:'2.5rem',
+      'margin':'0.5rem',
+      'margin-right':'0rem'
+      // 'font-size': '1rem',
+      // padding: '0.5rem 2rem',
+      // 'margin-top': '2rem',
+      // top: '8rem'
       // 'font-size':'0.85rem'
     }
 
   }));
 
   const save = () => {
-    debugger
+    // debugger
     addFormToRedux()
-
-    toSaveForm(form).then((res) => { dispatch(saveForm(res)) }).catch
-      (alert('faild to save'));
-    setOpenAlert(true);
+debugger
+    toSaveForm(form)
+    .then((res) => { 
+      dispatch(saveForm(res));
+    history.push('/home'); })
+    .then(setOpenAlert(true))
+    .catch((err)=>
+      {console.log(err)
+        })
+    
   };
   const closeOpenAlert = () => {
     setOpenAlert(false);
@@ -130,7 +144,7 @@ function NewForm(props) {
     ScheduleApi(time);
   }
   const addFormToRedux = () => {
-    debugger
+    // debugger
     console.log("ans:", answers);
 
     let quest = {
@@ -160,8 +174,8 @@ function NewForm(props) {
   return (<div >
     <div className="paper">
       <div className="buttonDiv">
-        <div >
-          <Button className={classes.button} variant="contained" onClick={save} ><SaveAltIcon style={{ padding: "0.25rem" }} />save</Button>
+        <div className="buttonDiv">
+          <button className={"buttonSave"} variant="contained" onClick={save} ><SaveAltIcon />save</button>
           <Dialog
             open={openAlert}
             onClose={closeOpenAlert}
@@ -184,8 +198,8 @@ function NewForm(props) {
             </DialogActions>
           </Dialog>
         </div>
-        <div ><Button className={classes.button} variant="contained" onClick={emailList} ><AlternateEmailIcon style={{ padding: "0.25rem" }} />     email to send</Button></div>
-        <div style={{ display: showEmailList ? 'none' : 'inline', margin: "0.5rem", top: '200rem' }}> <FullListEmail /></div>
+        <div ><button className={'buttonSave'} onClick={emailList} ><AlternateEmailIcon style={{ padding: "0.25rem" }} />     email to send</button></div>
+        <div style={{ display: showEmailList ? 'none' : 'block'}}> <FullListEmail /></div>
         {/* {  showEmailList && <FullListEmail/> } */}
       </div>
 
@@ -203,19 +217,7 @@ function NewForm(props) {
 
           <div>
             <div className={"question"}>
-              <Fab
-                disabled={hasEmpty}
-                onClick={addFormToRedux}
-                variant="extended"
-                size="medium"
-                color="secondary"
-                aria-label="add"
-                // className={classes.margin}
-                className={buttonStyle.root}
-              >
-                <AddIcon className={classes.extendedIcon} />
-                add a question
-              </Fab>
+            
 
 
               <div style={{ display: showTiming ? 'none' : 'block' }}>
@@ -236,6 +238,13 @@ function NewForm(props) {
                 </form>
                 <Button variant="contained" color="secondary" onClick={after}>send</Button>
               </div>
+              <TextField id="standard-basic" id="cleen"
+                InputProps={{ style: { color: "white", } }}
+                InputLabelProps={{ style: { color: "white" } }}
+                className={textFeildStyle.root}
+                label="Question title"
+                onMouseMove={(e) => { setTheQuestion(e.target.value) }}
+              />
               <FormControl className={classes.formControl}>
                 <InputLabel className={textFeildStyle.root} id="demo-controlled-open-select-label"
                   style={{ color: "white" }}>
@@ -257,15 +266,22 @@ function NewForm(props) {
                 </Select>
               </FormControl>
              
-              <TextField id="standard-basic" id="cleen"
-                InputProps={{ style: { color: "white", } }}
-                InputLabelProps={{ style: { color: "white" } }}
-                className={textFeildStyle.root}
-                label="enter a question"
-                onMouseMove={(e) => { setTheQuestion(e.target.value) }}
-              />
-              {(kind == 20) && <Region />}
-              {(kind == 40 || kind == 30) && <CheckboxLabels />}
+             
+              {(kind === 20) && <Region />}
+              {(kind === 40 || kind === 30) && <CheckboxLabels />}
+              <Fab
+                disabled={hasEmpty}
+                onClick={addFormToRedux}
+                variant="extended"
+                size="medium"
+                color="secondary"
+                aria-label="add"
+                // className={classes.margin}
+                className={buttonStyle.root}
+              >
+                <AddIcon className={classes.extendedIcon} />
+                add an question
+              </Fab>
             </div>
           </div >
 

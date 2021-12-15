@@ -1,4 +1,4 @@
-
+//const { performance } = require('perf_hooks');
 export const getFormById = async (formId) => {
     try {
        // var form = JSON.parse(sessionStorage.getItem('form'));
@@ -66,26 +66,7 @@ export const removeEmail = async (email, form) => {
     }
 }
 
-export const sendForm = async () => {
-    try {
-        
-        console.log('its work');
-        var form = JSON.parse(sessionStorage.getItem('newForm'));
 
-        const response = await fetch(`http://localhost:3012/form/sendEmail/${form._id}`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        })
-
-        const data = await response.json()
-        return data.newForm;
-    }
-    catch (error) {
-        console.log("Status Code is:" + error);
-    }
-}
 
 export const toSaveForm = (myForm) => {
     console.log(myForm);
@@ -101,7 +82,74 @@ export const toSaveForm = (myForm) => {
             if (response.ok) {
                 response.json()
                     .then(() => {
-                        alert("saved successfully" + " " + myForm.name);
+                        alert("saved successfully" + myForm.name);
+                    })
+            } else {
+                response.json()
+                    .then(() => error1 => { alert(JSON.stringify(error1.errors)) })
+                    .catch(error => { console.log(error); 
+                    alert('faild to save')});
+            }
+        })
+}
+export const sendForm = async (form) => {
+    try {
+        
+        console.log('its work');
+
+        const response = await fetch(`http://localhost:3012/form/sendEmail/${form._id}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        })
+
+        const data = await response.json()
+        return data.newForm;
+    }
+    catch (error) {
+        console.log("Status Code is:" + error);
+    }
+}
+export const ScheduleApi = async (time,form) => {
+    try {
+        
+        console.log('schedule work');
+        
+
+        // var startTime = performance.now();
+        // var endTime = time.performance();
+        // const sec = endTime - startTime;
+        const response = await fetch(`http://localhost:3012/form/sendEmailSchedule/${form._id}/${time}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        })
+
+        const data = await response.json()
+        return data.newForm;
+    }
+    catch (error) {
+        console.log("Status Code is:" + error);
+    }
+}
+
+export const updateForm = (formId,formToUpdate) => {
+    console.log(formToUpdate);
+    //const myForm = JSON.parse(sessionStorage.getItem('form'))
+    return fetch(`http://localhost:3012/form/updateForm/${formId}`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(formToUpdate),
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json()
+                    .then(() => {
+                        alert("saved successfully" + formToUpdate.name);
                     })
             } else {
                 response.json()

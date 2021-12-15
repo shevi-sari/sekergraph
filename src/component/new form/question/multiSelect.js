@@ -32,9 +32,9 @@ function CheckboxLabels(props) {
     const [answer, setAnswer] = useState("")
     const [answerIndex, setAnswerIndex] = useState("")
     const dispatch = useDispatch();
-    const answers = useSelector(state => state.form.answers)
+    // const answers = useSelector(state => state.form.answers)
 
-    const [hasProps, setHasProps] = useState(false);
+    // const [hasProps, setHasProps] = useState(false);
     useEffect(() => {
 
 
@@ -89,7 +89,7 @@ function CheckboxLabels(props) {
     return (<div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
             <FormGroup row>
-                {props.hasProp && <label>{props.q.theQuestion}</label>}
+                {/* {props.hasProp && <label>{props.q.theQuestion}</label>} */}
                 <div className="answerOnMulty">
                     {answersArray.map((answer, i) => <div>
 
@@ -126,7 +126,7 @@ function CheckboxLabels(props) {
                         value={tmpAns}
                         onChange={(e) => { setTmpAns(e.target.value); }}
                     />
-                    <Button className={buttonStyle.root} onClick={addAns}>הוסף תשובה</Button></div>
+                    <Button className={buttonStyle.root} onClick={addAns}>add a answer</Button></div>
             </FormGroup></FormControl>
         <div className={classes.root}>
 

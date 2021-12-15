@@ -24,10 +24,9 @@ align-items: center;
 	align-items: center;
 	
 }
-/* .div{
-	clear: both;
-	display: flex;
-} */
+.homePage{
+	margin-top: 3rem;
+}
 
 #form1{
 	position: relative;

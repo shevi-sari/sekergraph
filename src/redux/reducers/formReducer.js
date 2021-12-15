@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    // //form: '',
+    form: {questionList:''},
     // answers: '',
     // question: '',
     // emails: ''

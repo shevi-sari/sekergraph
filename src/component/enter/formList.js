@@ -15,8 +15,6 @@ function FormList(props) {
     const formDetailes = (f) => {
         dispatch(saveForm(f));
         console.log('f^^^^^^^^^:', f._id);
-
-        //  console.log("form:::::::::", form);
         history.push('/formDetailes');
         // window.location.reload();
     }

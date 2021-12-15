@@ -24,9 +24,12 @@
         overflow: auto;
         /* box-shadow:1rem, rgb(27, 9, 9); */
         min-height:5rem;
-        width: 40rem;
-        margin:0.5rem;
+        width: 20rem;
+        margin: 0.5rem;
         color: rgb(224 108 121);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     
 } 
 .questionListIn{
@@ -62,7 +65,20 @@
 .buttonDiv{
         display: flex;
     flex-direction: column;
-    max-width: 15rem;
+    /* max-width: 15rem; */
   position: relative;
-
+  align-items: center;
+padding-top: 3rem;
+}
+.buttonSave{
+    background: #e06c79;
+     color: white;
+    border-top-left-radius: 1.5625rem;
+    border-bottom-left-radius: 1.5625rem;
+    width: 12rem;
+    height:2.5rem;
+    margin:0.5rem;
+    margin-right:0rem;
+    border: none;
+   
 }

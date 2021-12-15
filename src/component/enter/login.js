@@ -28,7 +28,7 @@ function Login() {
             setHasError(true)
     }, [email, password]);
 
-    const history = useHistory({forceRefresh:true});
+    const history = useHistory({ forceRefresh: true });
     const buttonStyle = button();
 
     const signup = () => {
@@ -44,10 +44,10 @@ function Login() {
                     alert("שם משתמש או סיסמא אינם תקינים");
                     console.log("Status Code is:" + data);
                 }
-                else if(data){
+                else if (data) {
                     dispatch(login(data))
                     history.push('/home');
-                    
+
                 }
             })
 
@@ -57,10 +57,12 @@ function Login() {
     const classes = textFeild();
     return (
 
-        <div className="form1" >
+        <div  >
             {/* <CustomizedDialogs style={{ color: 'black' }} /> */}
-            <form noValidate autoComplete="off"><div>
-           
+
+            <img src="_b1.png" className='img' no-repeat="true" />
+            <div className="label">Let's connect together</div>
+            <div className="form1">
                 <TextField id="standard-basic"
                     InputProps={{
                         style: {
@@ -96,12 +98,13 @@ function Login() {
                         setPassword(e.target.value)
                     }} />
 
+                <Button disabled={hasError} className={buttonStyle.root} variant="contained" onClick={login_func}  >enter</Button>
+                <div >Not registered yet?</div>
+                <Button className={buttonStyle.root} variant="contained" onClick={signup}  >signup</Button>
 
-                <br /><Button className={buttonStyle.root} variant="contained" onClick={signup}  >signup</Button>
-                <br /><Button disabled={hasError} className={buttonStyle.root} variant="contained" onClick={login_func}  >enter</Button>
+
+
             </div>
-
-            </form>
 
         </div>
     )

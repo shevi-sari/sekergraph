@@ -1,13 +1,14 @@
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const textFeild = makeStyles((theme) => ({
     root: {
-        
+
         '& label.Mui-focused': {
             color: 'white',
-        }, '& label.Mui-focused': {
-            color: 'white',
         },
+        // '& label.Mui-focused': {
+        //     color: 'white',
+        // },
         '& .MuiInput-underline:after': {
             borderBottomColor: 'white',
         },
@@ -36,8 +37,10 @@ export const button = makeStyles((theme) => ({
         color: 'white',
         'border-radius': '1.5625rem',
         'font-size': '1rem',
-         padding: '0.5rem 4rem',
-        margin: '0.5rem'
+        height: '40px',
+        width: '15rem',
+        //  padding: '0.5rem 4rem',
+        margin: '1.5rem'
     }
     // root: {
     //     '& label.Mui-focused': {

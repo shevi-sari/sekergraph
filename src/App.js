@@ -29,9 +29,9 @@ import {
 //   return <h1>{params.userName}</h1>
 // }
 function BlogPost() {
-  let  {formId} = useParams();
+  let  {formId,email} = useParams();
   console.log(formId);
-  return <FormToFill formId={formId}/>
+  return <FormToFill formId={formId} email={email}/>
   // return <div>Now showing post {formId}</div>;
 }
 
@@ -93,7 +93,7 @@ function App() {
           <Route path="/formToDesign">
             <FormToDesign />
           </Route>
-          <Route path="/formToFill/:formId">
+          <Route path="/formToFill/:formId/:email">
             {/* {BlogPost} */}
           {/* formId={params.formId} */}
           <BlogPost/>

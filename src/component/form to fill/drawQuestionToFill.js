@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { textFeild } from '../../style';
 import MultySelectToFill from './multySelectToFill';
 import OneAnswerToFill from './oneAnswerToFill';
 import RegionToFill from './regionToFill'
 import { TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveForm } from '../../redux/actions/formAction';
+// import { saveForm } from '../../redux/actions/formAction';
 import './drawQuestionToFill.css'
 
 import { saveAnswer } from '../../redux/actions/surveyedAction'
@@ -16,7 +16,7 @@ import { saveAnswer } from '../../redux/actions/surveyedAction'
 
 
 function DrawQuestionToFill(props) {
-    const [value, setValue] = React.useState('');
+    //const [value, setValue] = React.useState('');
     //const [openQuestion, setTheAnswer] = useState();
 
 
@@ -25,14 +25,14 @@ function DrawQuestionToFill(props) {
 
 
 
-    const answersList = useSelector(state => state.surveyed.answerList);
-
+    //const answersList = useSelector(state => state.surveyed.answerList);
+const [answersList,setAnswerList]=useState([])
 
     const handleChange = (event) => {
       //  console.log("event:", event.target);
-        setValue(event.target.value);
-        answersList[event.target.id] = event.target.value;
-        dispatch(saveAnswer([...answersList]));
+        //setValue(event.target.value);
+        setAnswerList[event.target.id] = event.target.value;
+        dispatch(saveAnswer(answersList));
   
 
     };
@@ -49,13 +49,13 @@ function DrawQuestionToFill(props) {
     //     }
     // }, [theQuestion]);
 
-    useEffect(() => {
-        console.log('redux', form);
-    }, [])
+    // useEffect(() => {
+    //     console.log('redux', form);
+    // }, [])
 
     return (
         <div>
-            {form && form.questionList.map((q, i) => {
+            {form.theQuestion || form.name  ?form.questionList.map((q, i) => {
                 return (
                     <div className="answer" >
                         <span>שאלה {i + 1}</span>
@@ -82,7 +82,7 @@ function DrawQuestionToFill(props) {
 
                 )
             }
-            )}</div>)
+            ):0}</div>)
 
 }
 export default DrawQuestionToFill;

@@ -6,8 +6,19 @@
     }
     .form1{
         top: 25rem;
-      
+		padding-top: 100px;
+		
+		display: flex;
+		flex-direction: column;
+		align-content: space-around;
+		align-items: center;
+	
     }
+	.label{
+		margin-top:5rem;
+		font-size: 34px;
+
+	}
     #Group_176 {
 		position: absolute;
 		width: 199.826px;

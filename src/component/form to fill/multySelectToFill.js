@@ -4,7 +4,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import {useDispatch,useSelector} from 'react-redux'
 import {saveAnswer} from '../../redux/actions/surveyedAction'
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const { gilad, jason, antoine } = state;
+  // const { gilad, jason, antoine } = state;
 
 
   return (

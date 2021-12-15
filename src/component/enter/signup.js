@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button, TextField } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
-import { textFeild } from '../../style';
 import { signupApi } from '../api/signupApi';
 import { loginApi } from '../api/loginApi.js';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
-
+import { Button, TextField } from '@material-ui/core';
+import { textFeild, button } from '../../style';
 import './signup.css'
 
 
@@ -25,7 +24,7 @@ function Signup() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const buttonStyle = button();
     const signup = () => {
         signupApi({ email, password, name }).then(() => {
             loginApi(email, password)
@@ -53,14 +52,17 @@ function Signup() {
 
 
     function isNotEmail() {
-        let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let regEmail =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return (!regEmail.test(email))
     }
 
     const classes = textFeild();
     return (
         <div>
-            <form className={classes.root} noValidate autoComplete="off">
+             <img src="_b1.png" className='img' no-repeat="true" />
+            <div className='label'>Enter you details</div>
+            <div className="form1">
+            {/* <div className={classes.root} noValidate autoComplete="off"> */}
 
                 <div viewBox="0 0 460.192 1">
                     <TextField id="Line_1" d="M 460.1918029785156 0 L 0 0"
@@ -99,14 +101,10 @@ function Signup() {
                         size={'big'}
                         className={classes.root}
                         InputProps={{
-                            style: {
-                                color: "white",
-                            }
+                            style: { color: "white", }
                         }}
                         InputLabelProps={{
-                            style: {
-                                color: "white",
-                            }
+                            style: { color: "white", }
                         }}
                         error={flagPassword}
                         id="standard-error-helper-text"
@@ -115,8 +113,7 @@ function Signup() {
                             setPassword(e.target.value)
                             setPasswordMass("");
                             setFlagPassword(false);
-                        }
-                        }
+                        }}
                         type="password"
                         helperText={passwordMass}
                         onBlur={() => {
@@ -132,14 +129,10 @@ function Signup() {
                     <TextField
                         className={classes.root}
                         InputProps={{
-                            style: {
-                                color: "white",
-                            }
+                            style: { color: "white", }
                         }}
                         InputLabelProps={{
-                            style: {
-                                color: "white",
-                            }
+                            style: { color: "white", }
                         }}
                         error={flagName}
                         id="standard-error-helper-text"
@@ -158,13 +151,11 @@ function Signup() {
                                 setFlagName(true)
                             }
                         }}
-                        style={{ color: 'white' }}
-                    />
+                        style={{ color: 'white' }} />
                 </div>
 
-
-                <Button disabled={hasError} className="button" variant="contained" onClick={signup} style={{ 'font-size': '1rem', margin: '2rem ', background: '#e06c79', color: 'white', 'border-radius': '1.5625rem', padding: '0.65rem 6.25rem' }} >connect</Button>
-            </form>
+                <Button disabled={hasError} className="button" variant="contained" onClick={signup} className={buttonStyle.root}>connect</Button>
+            </div>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, TextField } from '@material-ui/core';
+// import { Typography, TextField } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
-import { button } from '../../../style';
-import { connect, useDispatch } from 'react-redux';
+// import { button } from '../../../style';
+import { useDispatch } from 'react-redux';
 import { saveAnswersList } from '../../../redux/actions/formAction';
 
 
@@ -13,13 +13,13 @@ const useStyles = makeStyles({
   },
 });
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+// function valuetext(value) {
+//   return `${value}°C`;
+// }
 
 function DiscreteSlider(props) {
   const classes = useStyles();
-  const buttonStyle = button();
+ // const buttonStyle = button();
 
   const [max, setMax] = useState(100);
   const [step, setStep] = useState(10);
@@ -47,9 +47,9 @@ function DiscreteSlider(props) {
   return (
     <div className={classes.root}>
 
-      {props.hasProp && <Typography id="discrete-slider-always" gutterBottom>
+      {/* {props.hasProp && <Typography id="discrete-slider-always" gutterBottom>
         {props.q.theQuestion}
-      </Typography>}
+      </Typography>} */}
      { !props.hasProp && <div><div>enter max<input type="number" defaultValue={max} onBlur={(e) => setMax(e.target.value)} /></div>
         <div>enter step<input type="number" defaultValue={step} onBlur={(e) => setStep(e.target.value)} /></div></div>}
       {props.hasProp &&  <div><div>enter max<input type="number" defaultValue={props.q.answers[0]} onBlur={(e) => setMax(e.target.value)} /></div>

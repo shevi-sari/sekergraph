@@ -7,14 +7,15 @@ import { useDispatch } from 'react-redux';
 // import './formToFill.css'
 import { Button } from '@material-ui/core';
 import { sendAnswerList } from '../api/surveyedApi';
-
+import './formToFill.css'
 function FormToFill(props) {
   const [form, setForm] = useState([])
   const answersList = useSelector(state => state.surveyed.answerList);
 
   const dispatch = useDispatch();
 
-  useEffect(async () => {
+  useEffect( () => {
+    async function asyncfun(){
     getFormById(props.formId)
       .then((data) => {
         setForm(data);
@@ -22,12 +23,14 @@ function FormToFill(props) {
       })
       .catch(error => {
         console.error('Error during service worker registration:', error);
-      });
+      });}
+      asyncfun()
   }, []);
 
   const send = () => {
+  //  console.log(props.email);
     let fullForm = {
-      email: '',
+      email: props.email,
       forms: [{
         formId: props.formId,
         answers:answersList}]
@@ -37,11 +40,11 @@ function FormToFill(props) {
   //const form = useSelector(state => state.form);
   return (<div className="questions">
 
-    <img src="../_b1.png" className='img' no-repeat="true" />
+    <img src="../../_b1.png" className='img' no-repeat="true" />
 
     {form && <div >{form.name}
       <DrawQuestionToFill questionList={form.questionList} /></div>}
-    <Button color="secondary" onClick={send}>send</Button>
+    <button className='buttonSend' onClick={send}>send</button>
   </div>)
 }
 export default FormToFill;

@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import { ScheduleApi } from './../api/formApi';
-
+import RadioButtons from './question/radioButtons';
 function NewForm(props) {
   const [showEmailList, setShowEmailList] = useState(true);
   const [openQuestion, setOpenQuestion] = useState(false);
@@ -268,7 +268,9 @@ debugger
              
              
               {(kind === 20) && <Region />}
-              {(kind === 40 || kind === 30) && <CheckboxLabels />}
+              {(kind === 30) && <RadioButtons />}
+              {(kind === 40) && <CheckboxLabels />}
+              
               <Fab
                 disabled={hasEmpty}
                 onClick={addFormToRedux}

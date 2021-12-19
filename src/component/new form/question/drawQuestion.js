@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveForm, saveQuestion } from '../../../redux/actions/formAction';
 import './drawQuestion.css'
 import DeleteIcon from '@material-ui/icons/Clear';
+import RadioButtons from './radioButtons';
 function DrawQuestion(props) {
     const [questinToRemove, SetQuestionToRemove] = useState('');
 
@@ -64,12 +65,13 @@ function DrawQuestion(props) {
        
         {props.questionList &&props.questionList.map((q, i) => {
          return(
-            <div className="questionInList" >
+            <div  >
                   <DeleteIcon
                         onClick={() => {
                             SetQuestionToRemove(i)
                         }}
                     />
+                    <div className="questionInList">
                 <span className="white">{i + 1}</span>
                 {/* <TextField id="standard-basic"
                     onBlur={(e) => { setTheQuestion(e.target.value) }}
@@ -93,8 +95,9 @@ function DrawQuestion(props) {
                 {q.questionKind === 40 &&
                     <CheckboxLabels hasProp={true} q={q} />}
                 {q.questionKind === 30 &&
-                    <CheckboxLabels hasProp={true} q={q} />}
-            </div>
+                <RadioButtons hasProp={true} q={q}/>
+                  }
+            </div></div>
       
       ) })}</div>
 

@@ -82,3 +82,6 @@ padding-top: 3rem;
     border: none;
    
 }
+::-webkit-scrollbar {
+    display: none;
+}
